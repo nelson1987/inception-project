@@ -1,3 +1,8 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Inception.Api.Contracts;
+using Inception.Api.Features.Empregados;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // https://github.com/domaindrivendev/Swashbuckle.AspNetCore
@@ -11,6 +16,8 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
 });
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 
 var app = builder.Build();
 

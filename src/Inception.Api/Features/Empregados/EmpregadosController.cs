@@ -1,3 +1,4 @@
+using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Features.Empregados.Create;
 using Inception.Api.Features.Empregados.EmpregadosDelete;
@@ -10,6 +11,14 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Inception.Api.Features.Empregados;
+public class CreateEmpregadoValidator : AbstractValidator<CreateEmpregadoRequest> 
+{
+    public CreateEmpregadoValidator()
+    {
+        RuleFor(x => x.Inscricao).GreaterThan(0);
+        RuleFor(x => x.Nome).NotEmpty();
+    }
+}
 
 [ApiController]
 [Route("api/[controller]")]
@@ -64,8 +73,17 @@ public class EmpregadosController : ControllerBase
     [SwaggerOperation("Creates a new empregado", "Requires admin privileges")]
     [ProducesResponseType(201)]
     [SwaggerResponse(201, "The product was created")]
-    public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest empregado, [FromServices] IEmpregadoCreateHandler handler, CancellationToken cancellationToken = default)
+    [ProducesResponseType(typeof(IDictionary<string, string>), 422)]
+    [SwaggerResponse(422, "The product was created", typeof(IDictionary<string, string>))]
+    public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest empregado,
+        [FromServices] IEmpregadoCreateHandler handler,
+        [FromServices] IValidator<CreateEmpregadoRequest> validator,
+        CancellationToken cancellationToken = default)
     {
+        var validationResult = await validator.ValidateAsync(empregado, cancellationToken);
+        if (!validationResult.IsValid)
+            return UnprocessableEntity(validationResult.ToDictionary());
+
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 

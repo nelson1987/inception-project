@@ -8,6 +8,6 @@ public record Empregado
     public DateTime Nascimento { get; init; }
     public int Inscricao { get; init; }
     public decimal Salario { get; init; }
-    public Funcao MyProperty { get; init; }
+    //public Funcao MyProperty { get; init; }
     public Endereco Endereco { get; init; }
 }

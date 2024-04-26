@@ -9,12 +9,17 @@ public class CreateEmpregadoRequestFilter : ISchemaFilter
 {
     public void Apply(OpenApiSchema schema, SchemaFilterContext context)
     {
-        CreateEmpregadoRequest exemplo = new CreateEmpregadoRequest();
+        CreateEmpregadoRequest exemplo = new CreateEmpregadoRequest()
+        {
+            Nome = "An awesome product",
+            Nascimento = DateTime.UtcNow,
+            Inscricao = 1
+        };
         schema.Example = new OpenApiObject
         {
-            [nameof(exemplo.Nome)] = new OpenApiString("An awesome product"),
-            [nameof(exemplo.Nascimento)] = new OpenApiDateTime(DateTime.Now),
-            [nameof(exemplo.Inscricao)] = new OpenApiInteger(1),
+            [nameof(exemplo.Nome)] = new OpenApiString(exemplo.Nome),
+            [nameof(exemplo.Nascimento)] = new OpenApiDateTime(exemplo.Nascimento),
+            [nameof(exemplo.Inscricao)] = new OpenApiInteger(exemplo.Inscricao),
         };
     }
 }

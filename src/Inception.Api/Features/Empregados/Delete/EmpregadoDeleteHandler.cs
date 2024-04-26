@@ -18,9 +18,9 @@ public class EmpregadoDeleteHandler : IEmpregadoDeleteHandler
 
     public async Task<Response> Handle(CancellationToken cancellationToken = default)
     {
-        Response response = new Response();
+        Response response = new NotFoundResponse();
         var empregado = _empregadoRepository.GetByIdAsync(cancellationToken);
-        if (empregado == null) return new NotFoundResponse();
+        if (empregado == null) return response;
 
         return response;
     }

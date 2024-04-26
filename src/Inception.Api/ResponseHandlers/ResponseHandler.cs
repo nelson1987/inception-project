@@ -1,6 +1,4 @@
-﻿using Inception.Api.Features.Empregados.EmpregadosDelete;
-
-namespace Inception.Api.ResponseHandlers;
+﻿namespace Inception.Api.ResponseHandlers;
 
 public abstract class Response
 {

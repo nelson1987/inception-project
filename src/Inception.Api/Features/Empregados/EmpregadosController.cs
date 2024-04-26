@@ -1,4 +1,8 @@
+using Inception.Api.Features.Empregados.Create;
 using Inception.Api.Features.Empregados.EmpregadosDelete;
+using Inception.Api.Features.Empregados.GetAll;
+using Inception.Api.Features.Empregados.GetById;
+using Inception.Api.Features.Empregados.Update;
 using Inception.Api.ResponseHandlers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -87,7 +91,7 @@ namespace Inception.Api.Features.Empregados
         {
             //return Unauthorized();
             Response response = await handler.Handle(cancellationToken);
-            if(response is NotFoundResponse) return NotFound();
+            if (response is NotFoundResponse) return NotFound();
             return NoContent();
         }
     }

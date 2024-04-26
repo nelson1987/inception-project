@@ -7,7 +7,7 @@ namespace Inception.Api.Features.Empregados
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    [SwaggerTag("Create, read, update and delete Products")]
+    [SwaggerTag("Create, read, update and delete Empregados")]
     public class EmpregadosController : ControllerBase
     {
         private readonly ILogger<EmpregadosController> _logger;

@@ -11,14 +11,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Inception.Api.Features.Empregados;
-public class CreateEmpregadoValidator : AbstractValidator<CreateEmpregadoRequest> 
-{
-    public CreateEmpregadoValidator()
-    {
-        RuleFor(x => x.Inscricao).GreaterThan(0);
-        RuleFor(x => x.Nome).NotEmpty();
-    }
-}
 
 [ApiController]
 [Route("api/[controller]")]
@@ -44,7 +36,8 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(200, "The product was created")]
     [SwaggerResponse(400, "The product was created")]
     [SwaggerResponse(500, "The product was created")]
-    public async Task<ActionResult> GetAll([FromServices] IEmpregadoGetAllIdHandler handler, CancellationToken cancellationToken = default)
+    public async Task<ActionResult> GetAll([FromServices] IEmpregadoGetAllIdHandler handler,
+        CancellationToken cancellationToken = default)
     {
         //return Unauthorized();
         return Ok(await _context.Produtos.ToListAsync(cancellationToken));
@@ -61,7 +54,9 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(400, "The product was created", typeof(IDictionary<string, string>))]
     [SwaggerResponse(404, "The product was created")]
     [SwaggerResponse(500, "The product was created")]
-    public async Task<ActionResult> GetById([FromRoute] int id, [FromServices] IEmpregadoGetByIdHandler handler, CancellationToken cancellationToken = default)
+    public async Task<ActionResult> GetById([FromRoute] int id,
+        [FromServices] IEmpregadoGetByIdHandler handler,
+        CancellationToken cancellationToken = default)
     {
         //return Unauthorized();
         //return NotFound();
@@ -96,7 +91,10 @@ public class EmpregadosController : ControllerBase
     [SwaggerOperation("Update a Empregado", "Requires admin privileges")]
     [ProducesResponseType(typeof(PutEmpregadoResponse), 201)]
     [SwaggerResponse(201, "The product was created", typeof(PutEmpregadoResponse))]
-    public async Task<ActionResult> Update([FromRoute] int id, [FromBody, BindRequired] PutEmpregadoRequest empregado, [FromServices] IEmpregadoUpdateHandler handler, CancellationToken cancellationToken = default)
+    public async Task<ActionResult> Update([FromRoute] int id,
+        [FromBody, BindRequired] PutEmpregadoRequest empregado,
+        [FromServices] IEmpregadoUpdateHandler handler,
+        CancellationToken cancellationToken = default)
     {
         //return Unauthorized();
         //return NotFound();
@@ -108,7 +106,9 @@ public class EmpregadosController : ControllerBase
     [SwaggerOperation("Delete a Empregado", "Requires admin privileges")]
     [ProducesResponseType(204)]
     [SwaggerResponse(204, "The empregado was deleted")]
-    public async Task<ActionResult> Delete([FromRoute] int id, [FromServices] IEmpregadoDeleteHandler handler, CancellationToken cancellationToken = default)
+    public async Task<ActionResult> Delete([FromRoute] int id,
+        [FromServices] IEmpregadoDeleteHandler handler,
+        CancellationToken cancellationToken = default)
     {
         //return Unauthorized();
         Response response = await handler.Handle(cancellationToken);

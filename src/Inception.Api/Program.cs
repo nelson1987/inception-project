@@ -1,7 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Inception.Api.Contracts;
-using Inception.Api.Features.Empregados;
+using Inception.Api.Features.Empregados.Create;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -4,6 +4,7 @@ namespace Inception.Api.Features.Empregados;
 
 public record Empregado
 {
+    public int Id { get; init; }
     public string Nome { get; init; }
     public DateTime Nascimento { get; init; }
     public int Inscricao { get; init; }

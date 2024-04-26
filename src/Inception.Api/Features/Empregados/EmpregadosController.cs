@@ -1,15 +1,17 @@
+using Inception.Api.Contracts;
 using Inception.Api.Features.Empregados.Create;
 using Inception.Api.Features.Empregados.EmpregadosDelete;
 using Inception.Api.Features.Empregados.GetAll;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
 using Inception.Api.ResponseHandlers;
+using Inception.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Inception.Api.Features.Empregados
-{
+namespace Inception.Api.Features.Empregados;
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
@@ -17,10 +19,12 @@ namespace Inception.Api.Features.Empregados
     public class EmpregadosController : ControllerBase
     {
         private readonly ILogger<EmpregadosController> _logger;
+        private readonly AppDbContext _context;
 
-        public EmpregadosController(ILogger<EmpregadosController> logger)
+        public EmpregadosController(ILogger<EmpregadosController> logger, AppDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         //GETALL
@@ -34,8 +38,8 @@ namespace Inception.Api.Features.Empregados
         [SwaggerResponse(500, "The product was created")]
         public async Task<ActionResult> GetAll([FromServices] IEmpregadoGetAllIdHandler handler, CancellationToken cancellationToken = default)
         {
-            return Unauthorized();
-            return Ok();
+            //return Unauthorized();
+            return Ok(await _context.Produtos.ToListAsync(cancellationToken));
         }
 
         //GETBYID
@@ -51,35 +55,35 @@ namespace Inception.Api.Features.Empregados
         [SwaggerResponse(500, "The product was created")]
         public async Task<ActionResult> GetById([FromRoute] int id, [FromServices] IEmpregadoGetByIdHandler handler, CancellationToken cancellationToken = default)
         {
-            return Unauthorized();
-            return NotFound();
-            return Ok();
+            //return Unauthorized();
+            //return NotFound();
+            return Ok(await _context.Produtos.FirstOrDefaultAsync(x=>x.Id == id, cancellationToken));
         }
 
         //POST
         [HttpPost(Name = "Create Empregado")]
         [SwaggerOperation("Creates a new empregado", "Requires admin privileges")]
-        [ProducesResponseType(typeof(Empregado), 201)]
-        [SwaggerResponse(201, "The product was created", typeof(Empregado))]
-        public async Task<ActionResult> Create([FromBody, BindRequired] Empregado empregado, [FromServices] IEmpregadoCreateHandler handler, CancellationToken cancellationToken = default)
+        [ProducesResponseType(201)]
+        [SwaggerResponse(201, "The product was created")]
+        public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest empregado, [FromServices] IEmpregadoCreateHandler handler, CancellationToken cancellationToken = default)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            return Unauthorized();
+            //return Unauthorized();
             return Created();
         }
 
         //PUT
         [HttpPut("{id:int}", Name = "Update Empregado")]
         [SwaggerOperation("Update a Empregado", "Requires admin privileges")]
-        [ProducesResponseType(typeof(Empregado), 201)]
-        [SwaggerResponse(201, "The product was created", typeof(Empregado))]
-        public async Task<ActionResult> Update([FromRoute] int id, [FromBody, BindRequired] Empregado empregado, [FromServices] IEmpregadoUpdateHandler handler, CancellationToken cancellationToken = default)
+        [ProducesResponseType(typeof(PutEmpregadoResponse), 201)]
+        [SwaggerResponse(201, "The product was created", typeof(PutEmpregadoResponse))]
+        public async Task<ActionResult> Update([FromRoute] int id, [FromBody, BindRequired] PutEmpregadoRequest empregado, [FromServices] IEmpregadoUpdateHandler handler, CancellationToken cancellationToken = default)
         {
-            return Unauthorized();
-            return NotFound();
-            return Ok();
+            //return Unauthorized();
+            //return NotFound();
+            return NoContent();
         }
 
         //DELETE
@@ -95,4 +99,3 @@ namespace Inception.Api.Features.Empregados
             return NoContent();
         }
     }
-}

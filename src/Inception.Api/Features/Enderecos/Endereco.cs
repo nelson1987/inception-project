@@ -1,10 +1,10 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
+﻿//using Swashbuckle.AspNetCore.Annotations;
 
-namespace Inception.Api.Features.Enderecos;
+//namespace Inception.Api.Features.Enderecos;
 
-[SwaggerSchemaFilter(typeof(EnderecoSchemaFilter))]
-public record Endereco
-{
-    public string Rua { get; set; }
-    public int Numero { get; set; }
-}
+//[SwaggerSchemaFilter(typeof(EnderecoSchemaFilter))]
+//public record Endereco
+//{
+//    public string Rua { get; set; }
+//    public int Numero { get; set; }
+//}

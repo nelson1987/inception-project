@@ -39,21 +39,6 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Rua)
                 .HasMaxLength(250);
         });
-        //modelBuilder.Entity<Usuario>(entity =>
-        //{
-        //    entity.HasKey(e => e.Id);
-        //    entity.Property(e => e.Email)
-        //        .HasMaxLength(250);
-        //    entity.Property(e => e.Login)
-        //        .IsRequired()
-        //        .HasMaxLength(80);
-        //    entity.Property(e => e.Nome)
-        //        .IsRequired()
-        //        .HasMaxLength(100);
-        //    entity.Property(e => e.Senha)
-        //        .IsRequired()
-        //        .HasMaxLength(80);
-        //});
         OnModelCreatingPartial(modelBuilder);
     }
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

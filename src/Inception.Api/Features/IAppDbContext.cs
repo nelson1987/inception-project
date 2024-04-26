@@ -1,4 +1,4 @@
-﻿using Inception.Api.Features.Empregados;
+﻿using Inception.Database;
 
 namespace Inception.Api.Features;
 public interface IAppDbContext

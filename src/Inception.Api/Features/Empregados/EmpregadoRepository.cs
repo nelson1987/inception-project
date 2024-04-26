@@ -1,4 +1,6 @@
-﻿namespace Inception.Api.Features.Empregados;
+﻿using Inception.Database;
+
+namespace Inception.Api.Features.Empregados;
 
 public interface IEmpregadoRepository
 {

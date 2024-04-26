@@ -11,4 +11,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Empregados\EmpregadosGetById\" />
+    <Folder Include="Features\Empregados\EmpregadosGetAll\" />
+    <Folder Include="Features\Empregados\EmpregadoCreate\" />
+    <Folder Include="Features\Empregados\EmpregadosUpdate\" />
+  </ItemGroup>
+
 </Project>

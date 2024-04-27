@@ -71,6 +71,8 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(201, "The product was created")]
     [ProducesResponseType(typeof(IDictionary<string, string>), 422)]
     [SwaggerResponse(422, "The product was created", typeof(IDictionary<string, string>))]
+    [SwaggerResponseExample(200, typeof(WeatherForecastResponseExample))]
+    [SwaggerRequestExample(typeof(Produto), typeof(WeatherForecastRequestExample))]
     public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest empregado,
     [FromServices] IEmpregadoCreateHandler handler,
     [FromServices] IValidator<CreateEmpregadoRequest> validator,
@@ -115,5 +117,41 @@ public class EmpregadosController : ControllerBase
         Response response = await handler.Handle(cancellationToken);
         if (response is NotFoundResponse) return NotFound();
         return NoContent();
+    }
+}
+
+public class WeatherForecastResponseExample : IMultipleExamplesProvider<Produto>
+{
+    public IEnumerable<SwaggerExample<Produto>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Com Id", new Produto()
+        {
+            Nome = "Nome",
+            Preco = 0.01M
+        });
+        yield return SwaggerExample.Create("Sem Id", new Produto()
+        {
+            Id = 1,
+            Nome = "Nome",
+            Preco = 0.01M
+        });
+    }
+}
+
+public class WeatherForecastRequestExample : IMultipleExamplesProvider<Produto>
+{
+    public IEnumerable<SwaggerExample<Produto>> GetExamples()
+    {
+        yield return SwaggerExample.Create("Com Id", new Produto()
+        {
+            Nome = "Nome",
+            Preco = 0.01M
+        });
+        //yield return SwaggerExample.Create("Sem Id", new Produto()
+        //{
+        //    Id = 1,
+        //    Nome = "Nome",
+        //    Preco = 0.01M
+        //});
     }
 }

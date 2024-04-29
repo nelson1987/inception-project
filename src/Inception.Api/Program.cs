@@ -19,11 +19,11 @@ builder.Services.AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoVa
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
 app.UseHttpsRedirection();
 

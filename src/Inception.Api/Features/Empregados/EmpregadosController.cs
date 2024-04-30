@@ -11,12 +11,14 @@ using Inception.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Inception.Api.Features.Empregados;
 
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Consumes("application/json")]
 [SwaggerTag("Create, read, update and delete Empregados")]
 public class EmpregadosController : ControllerBase
 {
@@ -73,9 +75,8 @@ public class EmpregadosController : ControllerBase
     [ProducesResponseType(typeof(IDictionary<string, string>), 422)]
     [SwaggerResponse(422, "The product was created", typeof(IDictionary<string, string>))]
     [SwaggerResponseExample(200, typeof(WeatherForecastResponseExample))]
-    [SwaggerRequestExample(typeof(Produto), typeof(WeatherForecastRequestExample))]
+    [SwaggerRequestExample(typeof(Empregado), typeof(WeatherForecastRequestExample))]
     public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest request,
-
     [FromServices] IEmpregadoCreateHandler handler,
     [FromServices] IValidator<CreateEmpregadoRequest> validator,
     CancellationToken cancellationToken = default)
@@ -124,38 +125,38 @@ public class EmpregadosController : ControllerBase
     }
 }
 
-public class WeatherForecastResponseExample : IMultipleExamplesProvider<Produto>
+public class WeatherForecastResponseExample : IMultipleExamplesProvider<Empregado>
 {
-    public IEnumerable<SwaggerExample<Produto>> GetExamples()
+    public IEnumerable<SwaggerExample<Empregado>> GetExamples()
     {
-        yield return SwaggerExample.Create("Com Id", new Produto()
+        yield return SwaggerExample.Create("Com Id", new Empregado()
         {
             Nome = "Nome",
-            Preco = 0.01M
+            Salario = 0.01M
         });
-        yield return SwaggerExample.Create("Sem Id", new Produto()
+        yield return SwaggerExample.Create("Sem Id", new Empregado()
         {
             Id = 1,
             Nome = "Nome",
-            Preco = 0.01M
+            Salario = 0.01M
         });
     }
 }
 
-public class WeatherForecastRequestExample : IMultipleExamplesProvider<Produto>
+public class WeatherForecastRequestExample : IMultipleExamplesProvider<Empregado>
 {
-    public IEnumerable<SwaggerExample<Produto>> GetExamples()
+    public IEnumerable<SwaggerExample<Empregado>> GetExamples()
     {
-        yield return SwaggerExample.Create("Com Id", new Produto()
+        yield return SwaggerExample.Create("Com Id", new Empregado()
         {
             Nome = "Nome",
-            Preco = 0.01M
+            Salario = 0.01M
         });
-        //yield return SwaggerExample.Create("Sem Id", new Produto()
-        //{
-        //    Id = 1,
-        //    Nome = "Nome",
-        //    Preco = 0.01M
-        //});
+        yield return SwaggerExample.Create("Sem Id", new Empregado()
+        {
+            Id = 1,
+            Nome = "Nome",
+            Salario = 0.01M
+        });
     }
 }

@@ -1,15 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 namespace Inception.Database;
+
 public partial class AppDbContext : DbContext
 {
     public AppDbContext()
     { }
+
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     { }
+
     public virtual DbSet<Empregado> Produtos { get; set; }
     public virtual DbSet<Endereco> Enderecos { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -18,6 +22,7 @@ public partial class AppDbContext : DbContext
               ("Data Source=Macoratti;Initial Catalog=InventarioDB;Integrated Security=True");
         }
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Empregado>(entity =>
@@ -41,5 +46,6 @@ public partial class AppDbContext : DbContext
         });
         OnModelCreatingPartial(modelBuilder);
     }
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    private partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

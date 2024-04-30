@@ -1,6 +1,6 @@
 ﻿using Inception.Api.ResponseHandlers;
 
-namespace Inception.Api.Features.Empregados.EmpregadosDelete;
+namespace Inception.Api.Features.Empregados.Delete;
 
 public interface IEmpregadoDeleteHandler
 {
@@ -18,10 +18,11 @@ public class EmpregadoDeleteHandler : IEmpregadoDeleteHandler
 
     public async Task<Response> Handle(CancellationToken cancellationToken = default)
     {
-        Response response = new NotFoundResponse();
-        var empregado = _empregadoRepository.GetByIdAsync(cancellationToken);
-        if (empregado == null) return response;
+        //Response response = new NotFoundResponse();
+        //var empregado = _empregadoRepository.GetByIdAsync(cancellationToken);
+        //if (empregado == null) return response;
 
-        return response;
+        //return response;
+        throw new NotImplementedException();
     }
 }

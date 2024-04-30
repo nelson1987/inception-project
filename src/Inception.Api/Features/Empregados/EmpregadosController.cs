@@ -1,7 +1,8 @@
 using FluentValidation;
 using Inception.Api.Contracts;
+using Inception.Api.Extensions;
 using Inception.Api.Features.Empregados.Create;
-using Inception.Api.Features.Empregados.EmpregadosDelete;
+using Inception.Api.Features.Empregados.Delete;
 using Inception.Api.Features.Empregados.GetAll;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
@@ -73,17 +74,20 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(422, "The product was created", typeof(IDictionary<string, string>))]
     [SwaggerResponseExample(200, typeof(WeatherForecastResponseExample))]
     [SwaggerRequestExample(typeof(Produto), typeof(WeatherForecastRequestExample))]
-    public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest empregado,
+    public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest request,
+
     [FromServices] IEmpregadoCreateHandler handler,
     [FromServices] IValidator<CreateEmpregadoRequest> validator,
     CancellationToken cancellationToken = default)
     {
-        var validationResult = await validator.ValidateAsync(empregado, cancellationToken);
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
-            return UnprocessableEntity(validationResult.ToDictionary());
+            return UnprocessableEntity(validationResult.ToModelState());
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
+
+        await handler.Handle(request, cancellationToken);
 
         //return Unauthorized();
         return Created();

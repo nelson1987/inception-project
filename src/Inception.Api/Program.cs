@@ -12,7 +12,11 @@ builder.Services.AddControllers()
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c => { c.EnableAnnotations(); });
+
+builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastRequestExample));
+builder.Services.AddSwaggerGen(c => { 
+    c.ExampleFilters();
+    c.EnableAnnotations(); });
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 

@@ -1,6 +1,6 @@
 ﻿using Inception.Api.ResponseHandlers;
 
-namespace Inception.Api.Features.Empregados.EmpregadosDelete;
+namespace Inception.Api.Features.Empregados.Delete;
 
 public interface IEmpregadoDeleteHandler
 {

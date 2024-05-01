@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Inception.Database\Inception.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\ContasBancarias\Abertura\" />
+  </ItemGroup>
+
 </Project>

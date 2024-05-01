@@ -4,7 +4,6 @@ namespace Inception.Database;
 
 public class Empregado
 {
-    [SwaggerSchema(Description = "Identificador Unico", Nullable = false)]
     public int Id { get; set; }
     public string Nome { get; set; }
     public string Imagem { get; set; }

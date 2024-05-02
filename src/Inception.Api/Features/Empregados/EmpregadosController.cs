@@ -2,13 +2,13 @@ using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Features.Empregados.Create;
 using Inception.Api.Features.Empregados.EmpregadosDelete;
-using Inception.Api.Features.Empregados.GetAll;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
 using Inception.Api.ResponseHandlers;
 using Inception.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.RateLimiting;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Inception.Api.Features.Empregados;
@@ -16,9 +16,11 @@ namespace Inception.Api.Features.Empregados;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[EnableRateLimiting("fixed-by-ip")]
 [SwaggerTag("Create, read, update and delete Empregados")]
 public class EmpregadosController : ControllerBase
 {
+    /*
     private readonly ILogger<EmpregadosController> _logger;
     private readonly IAppDbContext _context;
 
@@ -27,7 +29,7 @@ public class EmpregadosController : ControllerBase
         _logger = logger;
         _context = context;
     }
-
+    */
     //GETALL
     [HttpGet(Name = "Get All Empregado")]
     [SwaggerOperation("Get all empregado", "Requires admin privileges")]
@@ -37,11 +39,11 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(200, "The product was created")]
     [SwaggerResponse(400, "The product was created")]
     [SwaggerResponse(500, "The product was created")]
-    public async Task<ActionResult> GetAll([FromServices] IEmpregadoGetAllIdHandler handler,
+    public async Task<ActionResult> GetAll(//[FromServices] IEmpregadoGetAllIdHandler handler,
     CancellationToken cancellationToken = default)
     {
         //return Unauthorized();
-        return Ok(await _context.Produtos.ToListAsync(cancellationToken));
+        return Ok("ok");//await _context.Produtos.ToListAsync(cancellationToken));
     }
 
     //GETBYID
@@ -61,7 +63,7 @@ public class EmpregadosController : ControllerBase
     {
         //return Unauthorized();
         //return NotFound();
-        return Ok(await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id, cancellationToken));
+        return Ok();// await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id, cancellationToken));
     }
 
     //POST

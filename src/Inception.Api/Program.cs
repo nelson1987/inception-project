@@ -1,11 +1,10 @@
 using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Features.Account;
-using Inception.Api.Features.Empregados.Create;
-using Microsoft.OpenApi.Models;
 using Inception.Api.Features.ContasBancarias;
 using Inception.Api.Features.Empregados;
 using Inception.Api.Features.Empregados.Create;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +43,7 @@ builder.Services.AddSwaggerGen(c => {
     });
 });
 //builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastRequestExample));
+builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
 builder.Services.AddSwaggerGen(c =>
 {
     c.ExampleFilters();

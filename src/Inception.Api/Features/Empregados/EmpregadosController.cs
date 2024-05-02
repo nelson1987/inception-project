@@ -1,12 +1,8 @@
 using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Extensions;
-using Inception.Api.Features.Empregados.Create;
-using Inception.Api.Features.Empregados.Delete;
-using Inception.Api.Features.Empregados.GetAll;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
-using Inception.Api.ResponseHandlers;
 using Inception.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -84,7 +80,7 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponseExample(200, typeof(WeatherForecastResponseExample))]
     [SwaggerRequestExample(typeof(Empregado), typeof(WeatherForecastRequestExample))]
     public async Task<ActionResult> Create([FromBody, BindRequired] CreateEmpregadoRequest request,
-    [FromServices] IEmpregadoCreateHandler handler,
+    //[FromServices] IEmpregadoCreateHandler handler,
     [FromServices] IValidator<CreateEmpregadoRequest> validator,
     CancellationToken cancellationToken = default)
     {
@@ -95,7 +91,7 @@ public class EmpregadosController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        await handler.Handle(request, cancellationToken);
+        //await handler.Handle(request, cancellationToken);
 
         //return Unauthorized();
         return Created();
@@ -122,12 +118,12 @@ public class EmpregadosController : ControllerBase
     [ProducesResponseType(204)]
     [SwaggerResponse(204, "The empregado was deleted")]
     public async Task<ActionResult> Delete([FromRoute] int id,
-    [FromServices] IEmpregadoDeleteHandler handler,
+    //[FromServices] IEmpregadoDeleteHandler handler,
     CancellationToken cancellationToken = default)
     {
         //return Unauthorized();
-        Response response = await handler.Handle(cancellationToken);
-        if (response is NotFoundResponse) return NotFound();
+        //Response response = await handler.Handle(cancellationToken);
+        //if (response is NotFoundResponse) return NotFound();
         return NoContent();
     }
 }

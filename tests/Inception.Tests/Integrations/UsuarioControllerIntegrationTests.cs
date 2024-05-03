@@ -20,7 +20,7 @@ public class UsuarioControllerIntegrationTests
     }
 
     [Fact]
-    public async Task Menor_De_Idade()
+    public async Task Post_Created()
     {
         var command = _command with { Description = string.Empty };
         // Arrange

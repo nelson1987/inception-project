@@ -14,7 +14,7 @@ using Inception.Api.Features.Usuarios;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddContaBancaria()
-                .AddUsuarioInjection()
+                .AddUsuarioInjection(builder.Configuration)
                 .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 builder.Services.AddUserAuthentication();
 builder.Services.AddControllers()

@@ -18,8 +18,8 @@ public partial class AppDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer
-              ("Data Source=Macoratti;Initial Catalog=InventarioDB;Integrated Security=True");
+            optionsBuilder.UseNpgsql
+              ("User ID=postgres;Password=password;Server=postgres;Port=5432;Database=Customers;Integrated Security=true;Pooling=true;");
         }
     }
 

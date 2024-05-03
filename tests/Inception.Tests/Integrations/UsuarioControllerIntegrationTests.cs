@@ -22,9 +22,9 @@ public class UsuarioControllerIntegrationTests
     [Fact]
     public async Task Post_Created()
     {
-        var command = _command with { Description = string.Empty };
+        //var command = _command with { FirstName = string.Empty };
         // Arrange
-        var content = new StringContent(JsonSerializer.Serialize(command),
+        var content = new StringContent(JsonSerializer.Serialize(_command),
             Encoding.UTF8, "application/json");
         // Act
         var result = await Client.PostAsync("api/usuarios", content);

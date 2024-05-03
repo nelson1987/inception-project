@@ -6,7 +6,12 @@ using Microsoft.EntityFrameworkCore;
 namespace Inception.Api.Features.Usuarios;
 public record CriacaoUsuarioCommand
 {
-    public string Description { get; set; }
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string Address { get; set; }
+    public string City { get; set; }
 }
 
 public interface IUsuarioService
@@ -28,12 +33,12 @@ public class UsuarioService : IUsuarioService
     {
         Customer customer = new Customer()
         {
-            Id = 1,
-            Address = command.Description,
-            City = "City",
-            Email = "Email",
-            FirstName = "FirstName",
-            LastName = "LastName",
+            Id = command.Id,
+            Address = command.FirstName,
+            City = command.City,
+            Email = command.Email,
+            FirstName = command.FirstName,
+            LastName = command.LastName
         };
         await InsertCustomerAsync(customer);
         //throw new NotImplementedException();
@@ -504,7 +509,7 @@ public class UsuariosController : DefaulController
 
         //if (!ModelState.IsValid)
         //    return BadRequest(ModelState);
-
+        request = request with { Id = 1, Address = "Address", City = "City", Email = "Email", FirstName = "FirstName", LastName = "LastName" };
         await service.Handle(request, cancellationToken);
 
         //return Unauthorized();

@@ -3,7 +3,7 @@ CREATE DATABASE basegeografica;
 \c basegeografica;
 
 CREATE TABLE "Customers" (
-    "Id" INT NOT NULL,
+    "Id" SERIAL NOT NULL,
     "FirstName" VARCHAR(255) NOT NULL,
     "LastName" VARCHAR(255) NOT NULL,
     "Email" VARCHAR(255) NOT NULL,

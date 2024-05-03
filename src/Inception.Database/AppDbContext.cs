@@ -19,7 +19,7 @@ public partial class AppDbContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             optionsBuilder.UseNpgsql
-              ("User ID=postgres;Password=password;Server=postgres;Port=5432;Database=Customers;Integrated Security=true;Pooling=true;");
+              ("User ID=postgres;Password=postgres;Server=127.0.0.1;Port=5433;Database=Customers;Integrated Security=true;Pooling=true;");
         }
     }
 

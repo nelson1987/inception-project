@@ -3,7 +3,6 @@ using AutoFixture.AutoMoq;
 using Inception.Api.Features.ContasBancarias;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System.Text;
 using System.Text.Json;
 

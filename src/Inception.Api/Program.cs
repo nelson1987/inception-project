@@ -3,6 +3,7 @@ using Inception.Api.Contracts;
 using Inception.Api.Features.ContasBancarias;
 using Inception.Api.Features.Empregados;
 using Inception.Api.Features.Empregados.Create;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.RateLimiting;
 using Swashbuckle.AspNetCore.Filters;
 using System.Threading.RateLimiting;
@@ -64,6 +65,27 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+app.UseExceptionHandler(appError =>
+{
+    appError.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+
+        var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+        if (contextFeature is not null)
+        {
+            await context.Response.WriteAsJsonAsync(new
+            {
+                StatusCode = context.Response.StatusCode,
+                Message = "Internal Server Error",
+                Error = contextFeature.Error.Message
+            });
+        }
+    });
+});
 
 app.UseRateLimiter();
 

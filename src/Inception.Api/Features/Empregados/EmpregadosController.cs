@@ -1,11 +1,14 @@
 using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Extensions;
+using Inception.Api.Features.Empregados.Create;
+using Inception.Api.Features.Empregados.Delete;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
 using Inception.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.RateLimiting;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
@@ -16,6 +19,7 @@ namespace Inception.Api.Features.Empregados;
 [Route("api/[controller]")]
 [Produces("application/json")]
 [Consumes("application/json")]
+[EnableRateLimiting("fixed-by-ip")]
 [SwaggerTag("Create, read, update and delete Empregados")]
 public class EmpregadosController : ControllerBase
 {
@@ -45,7 +49,6 @@ public class EmpregadosController : ControllerBase
             reverse.Append(input[i]);
         }
         Thread.Sleep(500);
-        //return reverse.ToString();
         //return Unauthorized();
         return Ok(reverse.ToString());// await _context.Produtos.ToListAsync(cancellationToken));
     }

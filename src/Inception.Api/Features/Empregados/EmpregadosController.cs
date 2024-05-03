@@ -3,7 +3,6 @@ using Inception.Api.Contracts;
 using Inception.Api.Extensions;
 using Inception.Api.Features.Empregados.Create;
 using Inception.Api.Features.Empregados.Delete;
-using Inception.Api.Features.Empregados.GetAll;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
 using Inception.Api.ResponseHandlers;
@@ -13,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.RateLimiting;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
+using System.Text;
 
 namespace Inception.Api.Features.Empregados;
 
@@ -25,12 +25,10 @@ namespace Inception.Api.Features.Empregados;
 public class EmpregadosController : ControllerBase
 {
     private readonly ILogger<EmpregadosController> _logger;
-    private readonly IAppDbContext _context;
 
-    public EmpregadosController(ILogger<EmpregadosController> logger, IAppDbContext context)
+    public EmpregadosController(ILogger<EmpregadosController> logger)
     {
         _logger = logger;
-        _context = context;
     }
 
     //GETALL
@@ -42,12 +40,18 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(200, "The product was created")]
     [SwaggerResponse(400, "The product was created")]
     [SwaggerResponse(500, "The product was created")]
-    public async Task<ActionResult> GetAll([FromServices] IEmpregadoGetAllIdHandler handler,
+    public async Task<ActionResult> GetAll(//[FromServices] IEmpregadoGetAllIdHandler handler,
     CancellationToken cancellationToken = default)
     {
-
+        string input = "codemaze is awesome";
+        var reverse = new StringBuilder(input.Length);
+        for (int i = input.Length - 1; i >= 0; i--)
+        {
+            reverse.Append(input[i]);
+        }
+        Thread.Sleep(500);
         //return Unauthorized();
-        return Ok(await _context.Produtos.ToListAsync(cancellationToken));
+        return Ok(reverse.ToString());// await _context.Produtos.ToListAsync(cancellationToken));
     }
 
     //GETBYID
@@ -67,7 +71,7 @@ public class EmpregadosController : ControllerBase
     {
         //return Unauthorized();
         //return NotFound();
-        return Ok(await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id, cancellationToken));
+        return Ok();//await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id, cancellationToken));
     }
 
     //POST

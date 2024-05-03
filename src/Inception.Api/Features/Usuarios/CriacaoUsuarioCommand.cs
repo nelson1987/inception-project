@@ -1,17 +1,17 @@
 ﻿using Inception.Api.Features.ContasBancarias;
-using Inception.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Inception.Api.Features.Usuarios;
 public record CriacaoUsuarioCommand
 {
     public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string Address { get; set; }
-    public string City { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string Email { get; set; }
+    public required string Address { get; set; }
+    public required string City { get; set; }
 }
 
 public interface IUsuarioService
@@ -111,18 +111,9 @@ public static class Dependencies
 {
     public static IServiceCollection AddUsuarioInjection(this IServiceCollection services, IConfiguration configuration)
     {
-        //var server = "localhost";
-        //var port = "1433"; // Default SQL Server port
-        //var user = "SA"; // Warning do not use the SA account
-        //var password = "numsey#2021";
-        //var database = "LivrosDb";
-        //var connectionString = $"Server={server}, {port};Initial Catalog={database};User ID={user};Password={password}";
-        //services.AddDbContext<ApplicationDbContext>(options =>
-        //    options.UseSqlServer(connectionString));
-        var connectionString = "User ID=postgres;Password=postgres;Server=127.0.0.1;Port=5433;Database=basegeografica;Integrated Security=true;Pooling=true;";
         services.AddEntityFrameworkNpgsql()
             .AddDbContext<CustomersDbContext>(options =>
-                options.UseNpgsql(connectionString));
+                options.UseNpgsql(configuration["Data:DbContext:CustomersConnectionString"]));
 
         services.AddTransient<CustomersDbSeeder>();
         services.AddScoped<IUsuarioService, UsuarioService>();
@@ -132,17 +123,17 @@ public static class Dependencies
 
 public class Usuario
 {
-    public string Description { get; set; }
+    public required string Description { get; set; }
 }
 
 public class Customer
 {
     public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string Address { get; set; }
-    public string City { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string Email { get; set; }
+    public required string Address { get; set; }
+    public required string City { get; set; }
     //public State State { get; set; }
     //public int Zip { get; set; }
     //public string Gender { get; set; }
@@ -163,6 +154,7 @@ public class Customer
 //    public string Abbreviation { get; set; }
 //    public string Name { get; set; }
 //}
+
 public class CustomersDbContext : DbContext
 {
     public DbSet<Customer> Customers { get; set; }
@@ -172,14 +164,6 @@ public class CustomersDbContext : DbContext
     public CustomersDbContext(DbContextOptions<CustomersDbContext> options) : base(options)
     {
     }
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    if (!optionsBuilder.IsConfigured)
-    //    {
-    //        optionsBuilder.UseNpgsql
-    //          ("User ID=postgres;Password=postgres;Server=127.0.0.1;Port=5433;Database=Customers;Integrated Security=true;Pooling=true;");
-    //    }
-    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -210,7 +194,6 @@ public class CustomersDbContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 }
-
 
 public class CustomersDbSeeder
 {
@@ -485,8 +468,6 @@ public class CustomersDbSeeder
     //    return states;
     //}
 }
-
-
 
 [Route("api/[controller]")]
 public class UsuariosController : DefaulController

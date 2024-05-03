@@ -45,7 +45,7 @@ public class AccountController : ControllerBase
             .Where(c => c.Type == ClaimTypes.Role)
             .Select(c => c.Value);
 
-        return $"Autenticado - {identity.Name} Role: {string.Join(",", roles.ToList())}";
+        return $"Autenticado: {identity.Name}\nRole: {string.Join(",", roles.ToList())}";
     }
 
     [HttpGet]
@@ -54,7 +54,7 @@ public class AccountController : ControllerBase
     public string Employee()
     {
         var identity = (ClaimsIdentity?)User.Identity!;
-        return $"Funcionário{identity.Name}";
+        return $"Funcionário: {identity.Name}";
     }
 
     [HttpGet]
@@ -63,6 +63,6 @@ public class AccountController : ControllerBase
     public string Manager()
     {
         var identity = (ClaimsIdentity?)User.Identity!;
-        return $"Gerente{identity.Name}";
+        return $"Gerente: {identity.Name}";
     }
 }

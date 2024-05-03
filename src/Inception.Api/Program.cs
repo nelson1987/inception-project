@@ -1,12 +1,11 @@
-using System.Threading.RateLimiting;
 using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Features.ContasBancarias;
 using Inception.Api.Features.Empregados;
 using Inception.Api.Features.Empregados.Create;
 using Microsoft.AspNetCore.RateLimiting;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Filters;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddContaBancaria();

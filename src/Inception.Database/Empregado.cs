@@ -1,6 +1,4 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
-
-namespace Inception.Database;
+﻿namespace Inception.Database;
 
 public class Empregado
 {

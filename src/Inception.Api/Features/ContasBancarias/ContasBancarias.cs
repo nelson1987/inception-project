@@ -38,8 +38,6 @@ public class ContasBancarias : DefaulController
     [ProducesResponseType(201)]
     [SwaggerResponse(201, "A conta foi criada com sucesso.")]
     [SwaggerResponseExample(201, typeof(CreatedResult))]
-    //[ProducesResponseType(typeof(IDictionary<string, string>), 422)]
-    //[SwaggerResponse(422, "The product was created", typeof(IDictionary<string, string>))]
     public async Task<ActionResult> Create([FromBody, BindRequired] AberturaContaCommand request,
     [FromServices] IAberturaContaHandler handler,
     [FromServices] IValidator<AberturaContaCommand> validator,
@@ -58,6 +56,7 @@ public class ContasBancarias : DefaulController
         return Created();
     }
 }
+
 public static class Dependencies
 {
     public static IServiceCollection AddContaBancaria(this IServiceCollection services)
@@ -69,6 +68,7 @@ public static class Dependencies
         return services;
     }
 }
+
 public record AberturaContaCommand
 {
     public int Id { get; init; }
@@ -76,6 +76,7 @@ public record AberturaContaCommand
     public required string Email { get; init; }
     public int Age { get; init; }
 };
+
 public class AberturaContaCommandValidator : AbstractValidator<AberturaContaCommand>
 {
     public AberturaContaCommandValidator()
@@ -86,6 +87,7 @@ public class AberturaContaCommandValidator : AbstractValidator<AberturaContaComm
         RuleFor(x => x.Age).InclusiveBetween(18, 60);
     }
 };
+
 public class AberturaContaCommandExample : IMultipleExamplesProvider<AberturaContaCommand>
 {
     public IEnumerable<SwaggerExample<AberturaContaCommand>> GetExamples()
@@ -111,6 +113,7 @@ public interface IAberturaContaHandler
 {
     Task Handle(AberturaContaCommand command, CancellationToken cancellationToken = default);
 }
+
 public class AberturaContaHandler : IAberturaContaHandler
 {
     public Task Handle(AberturaContaCommand command, CancellationToken cancellationToken = default)

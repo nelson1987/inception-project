@@ -76,6 +76,7 @@ public record AberturaContaCommand
     public required string Email { get; init; }
     public int Age { get; init; }
 };
+
 public class AberturaContaCommandValidator : AbstractValidator<AberturaContaCommand>
 {
     public AberturaContaCommandValidator()

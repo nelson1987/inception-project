@@ -11,9 +11,9 @@ public class AccountController : ControllerBase
     [HttpPost]
     [Route("login")]
     [AllowAnonymous]
-    public ActionResult<dynamic> Authenticate([FromBody] User model)
+    public ActionResult<dynamic> Authenticate([FromServices] IUserRepository userRepository, [FromBody] User model)
     {
-        var user = UserRepository.Get(model.Username, model.Password);
+        var user = userRepository.Get(model.Username, model.Password);
 
         if (user == null)
             return NotFound(new { message = "Usuário ou senha inválidos" });

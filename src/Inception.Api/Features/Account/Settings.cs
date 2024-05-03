@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -15,9 +14,14 @@ public class User
     public required string Role { get; set; }
 }
 
-public static class UserRepository
+public interface IUserRepository
 {
-    public static User? Get(string username, string password)
+    User? Get(string username, string password);
+}
+
+public class UserRepository : IUserRepository
+{
+    public User? Get(string username, string password)
     {
         var users = new List<User>
         {
@@ -59,24 +63,25 @@ public static class Dependencies
 {
     public static IServiceCollection AddUserAuthentication(this IServiceCollection services)
     {
+        services.AddScoped<IUserRepository, UserRepository>();
         var key = Encoding.ASCII.GetBytes(Settings.Secret);
         services.AddAuthentication(x =>
+        {
+            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(x =>
+        {
+            x.RequireHttpsMetadata = false;
+            x.SaveToken = true;
+            x.TokenValidationParameters = new TokenValidationParameters
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+        });
         return services;
     }
 }

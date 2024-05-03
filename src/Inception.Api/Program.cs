@@ -9,16 +9,16 @@ using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
-builder.Services.AddContaBancaria();
-// https://github.com/domaindrivendev/Swashbuckle.AspNetCore
-
+builder.Services.AddContaBancaria()
+                .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
+builder.Services.AddUserAuthentication();
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
 builder.Services.AddSwaggerGen(c => { 
     c.EnableAnnotations();
+    c.ExampleFilters();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",
@@ -42,16 +42,6 @@ builder.Services.AddSwaggerGen(c => {
         }
     });
 });
-//builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
-builder.Services.AddSwaggerGen(c =>
-{
-    c.ExampleFilters();
-    c.EnableAnnotations();
-});
-
-builder.Services.AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
-builder.Services.AddUserAuthentication();
 
 var app = builder.Build();
 

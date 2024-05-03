@@ -45,6 +45,7 @@ public class EmpregadosController : ControllerBase
     public async Task<ActionResult> GetAll([FromServices] IEmpregadoGetAllIdHandler handler,
     CancellationToken cancellationToken = default)
     {
+
         //return Unauthorized();
         return Ok(await _context.Produtos.ToListAsync(cancellationToken));
     }

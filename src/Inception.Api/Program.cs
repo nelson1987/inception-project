@@ -80,7 +80,8 @@ app.UseExceptionHandler(appError =>
             await context.Response.WriteAsJsonAsync(new
             {
                 StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error"
+                Message = "Internal Server Error",
+                Error = contextFeature.Error.Message
             });
         }
     });

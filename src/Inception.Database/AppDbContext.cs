@@ -95,17 +95,29 @@ public class CustomersDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+        //c
+        //foreach (var item in Customers.ToArray())
+        //{
+        //    Remove(item);
+        //    SaveChanges();
+        //}
+        //Customers.Clear();
         modelBuilder.Seed();
         base.OnModelCreating(modelBuilder);
     }
 }
 public static class ModelBuilderExtensions
 {
+    public static void Clear<T>(this DbSet<T> dbSet) where T : class
+    {
+        //dbSet.RemoveRange(dbSet);
+    }
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Customer>().HasData(
             new Customer
             {
+                Id = 1,
                 FirstName = "William",
                 LastName = "Shakespeare",
                 Email = "Email",
@@ -124,7 +136,7 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Customer>
 {
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
-        builder.ToTable("Customer");
+        builder.ToTable("Customers");
 
         builder.HasKey(u => u.Id);
         /*

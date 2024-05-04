@@ -31,9 +31,10 @@ public class UsuarioService : IUsuarioService
 
     public async Task Handle(CriacaoUsuarioCommand command, CancellationToken cancellationToken = default)
     {
+        var listagem = await GetCustomersAsync();
         Customer customer = new Customer()
         {
-            Id = command.Id,
+            Id = 2,
             Address = command.FirstName,
             City = command.City,
             Email = command.Email,

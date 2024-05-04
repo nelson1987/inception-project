@@ -34,6 +34,7 @@ public class UsuarioService : IUsuarioService
         var listagem = await GetCustomersAsync();
         Customer customer = new Customer()
         {
+            Id = command.Id,
             Address = command.FirstName,
             City = command.City,
             Email = command.Email,
@@ -147,7 +148,7 @@ public class UsuariosController : DefaulController
 
         //if (!ModelState.IsValid)
         //    return BadRequest(ModelState);
-        request = request with { Id = 1, Address = "Address", City = "City", Email = "Email", FirstName = "FirstName", LastName = "LastName" };
+        request = request with { Address = "Address", City = "City", Email = "Email", FirstName = "FirstName", LastName = "LastName" };
         await service.Handle(request, cancellationToken);
 
         //return Unauthorized();

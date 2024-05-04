@@ -114,6 +114,7 @@ public static class ModelBuilderExtensions
         modelBuilder.Entity<Customer>().HasData(
             new Customer
             {
+                Id = 1,
                 FirstName = "William",
                 LastName = "Shakespeare",
                 Email = "Email",

@@ -34,7 +34,6 @@ public class UsuarioService : IUsuarioService
         var listagem = await GetCustomersAsync();
         Customer customer = new Customer()
         {
-            Id = 2,
             Address = command.FirstName,
             City = command.City,
             Email = command.Email,

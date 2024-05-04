@@ -95,29 +95,25 @@ public class CustomersDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
-        //c
-        //foreach (var item in Customers.ToArray())
-        //{
-        //    Remove(item);
-        //    SaveChanges();
-        //}
-        //Customers.Clear();
-        modelBuilder.Seed();
         base.OnModelCreating(modelBuilder);
+        //Delete();
+        modelBuilder.Seed();
     }
+    //private void Delete()
+    //{
+    //    this.Database.EnsureDeleted();
+    //    this.Database.Migrate();
+    //    //var customs = Customers.ToList();
+    //    //Customers.RemoveRange
+    //}
 }
 public static class ModelBuilderExtensions
 {
-    public static void Clear<T>(this DbSet<T> dbSet) where T : class
-    {
-        //dbSet.RemoveRange(dbSet);
-    }
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Customer>().HasData(
             new Customer
             {
-                Id = 1,
                 FirstName = "William",
                 LastName = "Shakespeare",
                 Email = "Email",

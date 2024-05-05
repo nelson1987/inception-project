@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Api", "src\Inception.Api\Inception.Api.csproj", "{249390E2-F70F-443F-9E8C-39AD4B3B091E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Database", "src\Inception.Database\Inception.Database.csproj", "{E514435D-6544-4C8D-AFDB-2E2C301BE711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Core", "src\Inception.Core\Inception.Core.csproj", "{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Core", "src\Inception.Core\Inception.Core.csproj", "{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Tests", "tests\Inception.Tests\Inception.Tests.csproj", "{C0D82BCE-5445-43E7-8C88-D1C157A259AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Tests", "tests\Inception.Tests\Inception.Tests.csproj", "{C0D82BCE-5445-43E7-8C88-D1C157A259AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Database", "src\Inception.Database\Inception.Database.csproj", "{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{249390E2-F70F-443F-9E8C-39AD4B3B091E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{249390E2-F70F-443F-9E8C-39AD4B3B091E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{249390E2-F70F-443F-9E8C-39AD4B3B091E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{C0D82BCE-5445-43E7-8C88-D1C157A259AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0D82BCE-5445-43E7-8C88-D1C157A259AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0D82BCE-5445-43E7-8C88-D1C157A259AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

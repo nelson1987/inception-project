@@ -2,11 +2,6 @@
 
 namespace Inception.Api.Features;
 
-public interface IAppDbContext
-{
-    IProduto Produtos { get; }
-}
-
 public interface IProduto
 {
     Task<object> ToListAsync(CancellationToken cancellationToken = default);

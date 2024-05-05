@@ -9,10 +9,12 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.RateLimiting;
 using Swashbuckle.AspNetCore.Filters;
 using System.Threading.RateLimiting;
+using Inception.Api.Features.Usuarios;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddContaBancaria()
+                .AddUsuarioInjection(builder.Configuration)
                 .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 builder.Services.AddUserAuthentication();
 builder.Services.AddControllers()
@@ -104,3 +106,5 @@ app.UseExceptionHandler(appError =>
 });
 app.UseRateLimiter();
 app.Run();
+
+public partial class Program { }

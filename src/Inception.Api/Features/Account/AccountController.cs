@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Inception.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -11,8 +12,9 @@ public class AccountController : ControllerBase
     [HttpPost]
     [Route("login")]
     [AllowAnonymous]
-    public ActionResult<dynamic> Authenticate([FromServices] IUserRepository userRepository, [FromBody] User model)
+    public async Task<ActionResult<dynamic>> Authenticate([FromServices] IUserRepository userRepository, [FromBody] User model, CancellationToken cancellationToken = default)
     {
+        await userRepository.SeedAsync(cancellationToken);
         var user = userRepository.Get(model.Username, model.Password);
 
         if (user == null)

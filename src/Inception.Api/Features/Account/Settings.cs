@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Inception.Core;
+using Inception.Database;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -6,29 +8,32 @@ using System.Text;
 
 namespace Inception.Api.Features.Account;
 
-public class User
-{
-    public int Id { get; set; }
-    public required string Username { get; set; }
-    public required string Password { get; set; }
-    public required string Role { get; set; }
-}
-
 public interface IUserRepository
 {
+    Task SeedAsync(CancellationToken cancellationToken = default);
     User? Get(string username, string password);
 }
 
 public class UserRepository : IUserRepository
 {
+    private readonly AppDbContext context;
+    public UserRepository()
+    {
+        context = new AppDbContext();
+    }
+
     public User? Get(string username, string password)
     {
-        var users = new List<User>
-        {
-            new() { Id = 1, Username = "batman", Password = "batman", Role = "manager" },
-            new() { Id = 2, Username = "robin", Password = "robin", Role = "employee" }
-        };
-        return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
+        return context.Usuarios.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
+    }
+    public async Task SeedAsync(CancellationToken cancellationToken = default)
+    {
+        if (context.Usuarios.FirstOrDefault(x => x.Id == 1) == null)
+            await context.Usuarios.AddAsync(new() { Id = 1, Username = "batman", Password = "batman", Role = "manager" }, cancellationToken);
+        if (context.Usuarios.FirstOrDefault(x => x.Id == 2) == null)
+            await context.Usuarios.AddAsync(new() { Id = 2, Username = "robin", Password = "robin", Role = "employee" }, cancellationToken);
+        if ((context.Usuarios.FirstOrDefault(x => x.Id == 2) == null) || (context.Usuarios.FirstOrDefault(x => x.Id == 1) == null))
+            await context.SaveChangesAsync(cancellationToken);
     }
 }
 

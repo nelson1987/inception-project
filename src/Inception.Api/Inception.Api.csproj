@@ -17,6 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Inception.Core\Inception.Core.csproj" />
 		<ProjectReference Include="..\Inception.Database\Inception.Database.csproj" />
 	</ItemGroup>
 

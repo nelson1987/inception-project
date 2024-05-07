@@ -105,3 +105,4 @@ app.UseExceptionHandler(appError =>
 });
 app.UseRateLimiter();
 app.Run();
+public partial class Program { }

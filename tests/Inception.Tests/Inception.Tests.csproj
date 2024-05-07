@@ -25,6 +25,7 @@
 
 	<ItemGroup>
 		<Using Include="Xunit" />
+		<Using Include="Inception.Api" />
 		<Using Include="Inception.Api.Features" />
 	</ItemGroup>
 

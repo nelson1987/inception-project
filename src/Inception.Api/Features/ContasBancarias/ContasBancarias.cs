@@ -10,11 +10,11 @@ namespace Inception.Api.Features.ContasBancarias;
 [ApiController]
 [Produces("application/json")]
 [Consumes("application/json")]
-public class DefaulController : ControllerBase
+public class DefaultController : ControllerBase
 {
     private readonly ILogger _logger;
 
-    public DefaulController(ILogger logger)
+    public DefaultController(ILogger logger)
     {
         _logger = logger;
     }
@@ -22,7 +22,7 @@ public class DefaulController : ControllerBase
 
 [Route("api/[controller]")]
 [SwaggerTag("Create, read, update and delete Empregados")]
-public class ContasBancarias : DefaulController
+public class ContasBancarias : DefaultController
 {
     private readonly ILogger<ContasBancarias> _logger;
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 
 namespace Inception.Tests.Integrations;
+
 public class ApiFixture : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -15,12 +16,14 @@ public class ApiFixture : WebApplicationFactory<Program>
         builder.UseEnvironment("Testing");
     }
 }
+
 public class ContasBancariasControllerIntegrationTests
 {
     private readonly IFixture _fixture = new Fixture().Customize(new AutoMoqCustomization());
     private readonly ApiFixture _server = new();
     private readonly AberturaContaCommand _command;
     private HttpClient Client => _server.CreateClient();
+
     //private IWriteRepository<Movement> _creditNotesWriter =>
     //    _server.Services.GetRequiredService<IWriteRepository<Movement>>();
     //private IReadRepository<Movement> _creditNotesReader =>

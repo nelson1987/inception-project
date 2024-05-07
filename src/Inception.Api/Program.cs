@@ -4,9 +4,9 @@ using Inception.Api.Features.Account;
 using Inception.Api.Features.ContasBancarias;
 using Inception.Api.Features.Empregados;
 using Inception.Api.Features.Empregados.Create;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Threading.RateLimiting;
 
@@ -19,7 +19,8 @@ builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
-builder.Services.AddSwaggerGen(c => { 
+builder.Services.AddSwaggerGen(c =>
+{
     c.EnableAnnotations();
     c.ExampleFilters();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()

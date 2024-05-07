@@ -1,7 +1,6 @@
 ﻿using Inception.Core;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
-using SharpCompress.Common;
 
 namespace Inception.Database;
 

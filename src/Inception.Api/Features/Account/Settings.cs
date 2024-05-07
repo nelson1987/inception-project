@@ -11,12 +11,14 @@ namespace Inception.Api.Features.Account;
 public interface IUserRepository
 {
     Task SeedAsync(CancellationToken cancellationToken = default);
+
     User? Get(string username, string password);
 }
 
 public class UserRepository : IUserRepository
 {
     private readonly AppDbContext context;
+
     public UserRepository()
     {
         context = new AppDbContext();
@@ -26,6 +28,7 @@ public class UserRepository : IUserRepository
     {
         return context.Usuarios.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
     }
+
     public async Task SeedAsync(CancellationToken cancellationToken = default)
     {
         if (context.Usuarios.FirstOrDefault(x => x.Id == 1) == null)

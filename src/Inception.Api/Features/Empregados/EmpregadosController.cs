@@ -1,8 +1,6 @@
 using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Extensions;
-using Inception.Api.Features.Empregados.Create;
-using Inception.Api.Features.Empregados.Delete;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
 using Inception.Database;

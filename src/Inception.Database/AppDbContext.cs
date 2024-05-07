@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.EntityFrameworkCore.Extensions;
 
 namespace Inception.Database;
 
@@ -18,32 +19,37 @@ public partial class AppDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer
-              ("Data Source=Macoratti;Initial Catalog=InventarioDB;Integrated Security=True");
+            //optionsBuilder.UseSqlServer
+            //  ("Data Source=Macoratti;Initial Catalog=InventarioDB;Integrated Security=True");
+            var connectionString = "";
+            var databaseName = "";
+            optionsBuilder.UseMongoDB(connectionString, databaseName);
         }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Empregado>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.Nome)
-                .IsRequired()
-                .HasMaxLength(100);
-            entity.Property(e => e.Imagem)
-                .HasMaxLength(250);
-            entity.Property(e => e.Nascimento)
-                .HasColumnType("date");
-            entity.Property(e => e.Salario)
-                .HasColumnType("decimal(18, 2)");
-        });
-        modelBuilder.Entity<Endereco>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.Rua)
-                .HasMaxLength(250);
-        });
+        modelBuilder.Entity<Empregado>()
+            .ToCollection("Empregado");
+        //modelBuilder.Entity<Empregado>(entity =>
+        //{
+        //    entity.HasKey(e => e.Id);
+        //    entity.Property(e => e.Nome)
+        //        .IsRequired()
+        //        .HasMaxLength(100);
+        //    entity.Property(e => e.Imagem)
+        //        .HasMaxLength(250);
+        //    entity.Property(e => e.Nascimento)
+        //        .HasColumnType("date");
+        //    entity.Property(e => e.Salario)
+        //        .HasColumnType("decimal(18, 2)");
+        //});
+        //modelBuilder.Entity<Endereco>(entity =>
+        //{
+        //    entity.HasKey(e => e.Id);
+        //    entity.Property(e => e.Rua)
+        //        .HasMaxLength(250);
+        //});
         //OnModelCreatingPartial(modelBuilder);
     }
 

@@ -5,11 +5,12 @@ using Microsoft.OpenApi.Models;
 using System.Threading.RateLimiting;
 using Inception.Database;
 using Swashbuckle.AspNetCore.Filters;
+using Inception.Api.Features.ContasBancarias;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
-builder.Services.ConfigureContexts(builder.Configuration);
-//                .AddContaBancaria()
+builder.Services.ConfigureContexts(builder.Configuration)
+                .AddContaBancaria();
 //                .AddUsuarioInjection(builder.Configuration)
 //                .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 builder.Services.AddUserAuthentication();

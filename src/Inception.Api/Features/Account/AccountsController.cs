@@ -1,6 +1,5 @@
 ﻿using Inception.Api.Features.Account.Authentication;
 using Inception.Api.Features.Account.Login;
-using Inception.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;

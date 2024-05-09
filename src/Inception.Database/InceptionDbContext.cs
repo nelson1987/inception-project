@@ -3,7 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 
 namespace Inception.Database;
-public interface IInceptionDbContext { DbSet<User> Usuarios { get; init; } }
+public interface IInceptionDbContext
+{
+    DbSet<User> Usuarios { get; init; }
+
+}
 public partial class InceptionDbContext : DbContext, IInceptionDbContext
 {
     public InceptionDbContext()

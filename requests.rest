@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 ###
 
-@authToken = {{login.response.body.$.token}}
+@authToken = {{login.response.body.$.Token}}
 
 # @name getAuthenticated
 GET {{baseUrl}}/Account/authenticated
@@ -25,4 +25,17 @@ Content-Type: application/json
 GET {{baseUrl}}/Account/manager 
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
+###
+
+# @name postContasBancarias
+POST {{baseUrl}}/contasbancarias 
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "Id": 4,
+  "Name": "Nome",
+  "Email": "maiordeidade@email.com",
+  "Age": 18
+}
 ###

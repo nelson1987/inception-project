@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Inception.Api.Extensions;
 using Inception.Api.Features.ContasBancarias.Abertura;
+using Inception.Core.Features.ContaBancarias.Abertura;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -11,11 +12,11 @@ namespace Inception.Api.Features.ContasBancarias;
 
 [Route("api/[controller]")]
 [SwaggerTag("Create, read, update and delete Empregados")]
-public class ContasBancarias : DefaultController
+public class ContasBancariasController : DefaultController
 {
-    private readonly ILogger<ContasBancarias> _logger;
+    private readonly ILogger<ContasBancariasController> _logger;
 
-    public ContasBancarias(ILogger<ContasBancarias> logger) : base(logger)
+    public ContasBancariasController(ILogger<ContasBancariasController> logger) : base(logger)
     {
         _logger = logger;
     }

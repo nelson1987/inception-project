@@ -10,7 +10,7 @@ using Inception.Api.Features.ContasBancarias;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.ConfigureContexts(builder.Configuration)
-                .AddContaBancaria();
+                .AddContaBancariaEnpoints();
 //                .AddUsuarioInjection(builder.Configuration)
 //                .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 builder.Services.AddUserAuthentication();

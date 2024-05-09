@@ -33,7 +33,7 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "Id": 4,
+  "Id": 3,
   "Name": "Nome",
   "Email": "maiordeidade@email.com",
   "Age": 18

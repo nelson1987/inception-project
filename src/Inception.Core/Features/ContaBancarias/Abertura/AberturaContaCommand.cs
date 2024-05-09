@@ -1,4 +1,4 @@
-﻿namespace Inception.Api.Features.ContasBancarias.Abertura;
+﻿namespace Inception.Core.Features.ContaBancarias.Abertura;
 
 public record AberturaContaCommand
 {

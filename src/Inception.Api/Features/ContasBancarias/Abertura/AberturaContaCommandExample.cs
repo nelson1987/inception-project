@@ -1,4 +1,5 @@
-﻿using Swashbuckle.AspNetCore.Filters;
+﻿using Inception.Core.Features.ContaBancarias.Abertura;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Inception.Api.Features.ContasBancarias.Abertura;
 

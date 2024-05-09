@@ -1,7 +1,4 @@
-﻿using Inception.Core;
-using Inception.Database;
-
-namespace Inception.Api.Features.ContasBancarias.Abertura;
+﻿namespace Inception.Core.Features.ContaBancarias.Abertura;
 
 public interface IAberturaContaHandler
 {

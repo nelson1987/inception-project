@@ -16,16 +16,16 @@ public interface IUserRepository
 
 public class UserRepository : IUserRepository
 {
-    private readonly InceptionDbContext context;
+    private readonly IInceptionDbContext _context;
 
-    public UserRepository()
+    public UserRepository(IInceptionDbContext context)
     {
-        context = new InceptionDbContext();
+        _context = context;
     }
 
     public async Task<User?> Get(string username, string password, CancellationToken cancellationToken = default)
     {
-        return await context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password, cancellationToken);
+        return await _context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password, cancellationToken);
     }
 }
 

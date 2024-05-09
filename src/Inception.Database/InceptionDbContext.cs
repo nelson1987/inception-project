@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 
 namespace Inception.Database;
-
-public partial class InceptionDbContext : DbContext
+public interface IInceptionDbContext { DbSet<User> Usuarios { get; init; } }
+public partial class InceptionDbContext : DbContext, IInceptionDbContext
 {
     public InceptionDbContext()
     { }
@@ -13,10 +13,11 @@ public partial class InceptionDbContext : DbContext
         : base(options)
     { }
 
-    public virtual DbSet<User> Usuarios { get; set; }
+    public virtual DbSet<User> Usuarios { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<User>(entity =>
         {
             entity.ToCollection("stocks");

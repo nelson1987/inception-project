@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.OpenApi.Models;
 using System.Threading.RateLimiting;
 using Inception.Database;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
@@ -15,11 +16,11 @@ builder.Services.AddUserAuthentication();
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
+builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(LoginAccountResponseExample));
 builder.Services.AddSwaggerGen(c =>
 {
-    //c.EnableAnnotations();
-    //c.ExampleFilters();
+    c.EnableAnnotations();
+    c.ExampleFilters();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",

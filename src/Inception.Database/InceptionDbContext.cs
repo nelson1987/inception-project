@@ -15,16 +15,6 @@ public partial class InceptionDbContext : DbContext
 
     public virtual DbSet<User> Usuarios { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            var connectionString = "mongodb://root:password@localhost:27017/";
-            var databaseName = "sales";
-            optionsBuilder.UseMongoDB(connectionString, databaseName);
-        }
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>(entity =>

@@ -1,17 +1,10 @@
-﻿using Inception.Core;
+﻿using Inception.Api.Features.Account.Authentication;
+using Inception.Api.Features.Account.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Inception.Api.Features.Account;
-public record LoginAccountCommand
-{
-    public string Username { get; set; }
-    public string Password { get; set; }
-}
-
-public record LoginAccountResponse(int Id, string Username, string Role, string Token);
-public record AuthenticationQueryResponse(string Username, string[] Roles);
 
 [ApiController]
 [Route("api/[controller]")]

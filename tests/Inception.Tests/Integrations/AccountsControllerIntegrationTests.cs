@@ -2,7 +2,8 @@
 using AutoFixture.AutoMoq;
 using Azure;
 using FluentAssertions.Common;
-using Inception.Api.Features.Account;
+using Inception.Api.Features.Account.Authentication;
+using Inception.Api.Features.Account.Login;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;

@@ -1,30 +1,24 @@
-using FluentValidation;
-using Inception.Api.Contracts;
 using Inception.Api.Features.Account;
-using Inception.Api.Features.ContasBancarias;
-using Inception.Api.Features.Empregados;
-using Inception.Api.Features.Empregados.Create;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Threading.RateLimiting;
-using Inception.Api.Features.Usuarios;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
-builder.Services.AddContaBancaria()
-                .AddUsuarioInjection(builder.Configuration)
-                .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
+//builder.Services.AddContaBancaria()
+//                .AddUsuarioInjection(builder.Configuration)
+//                .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 builder.Services.AddUserAuthentication();
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
+//builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
 builder.Services.AddSwaggerGen(c =>
 {
-    c.EnableAnnotations();
-    c.ExampleFilters();
+    //c.EnableAnnotations();
+    //c.ExampleFilters();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",

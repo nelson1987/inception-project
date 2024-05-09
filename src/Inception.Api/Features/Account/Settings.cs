@@ -1,6 +1,7 @@
 ﻿using Inception.Core;
 using Inception.Database;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,33 +11,21 @@ namespace Inception.Api.Features.Account;
 
 public interface IUserRepository
 {
-    Task SeedAsync(CancellationToken cancellationToken = default);
-
-    User? Get(string username, string password);
+    Task<User?> Get(string username, string password, CancellationToken cancellationToken = default);
 }
 
 public class UserRepository : IUserRepository
 {
-    private readonly AppDbContext context;
+    private readonly InceptionDbContext context;
 
     public UserRepository()
     {
-        context = new AppDbContext();
+        context = new InceptionDbContext();
     }
 
-    public User? Get(string username, string password)
+    public async Task<User?> Get(string username, string password, CancellationToken cancellationToken = default)
     {
-        return context.Usuarios.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
-    }
-
-    public async Task SeedAsync(CancellationToken cancellationToken = default)
-    {
-        if (context.Usuarios.FirstOrDefault(x => x.Id == 1) == null)
-            await context.Usuarios.AddAsync(new() { Id = 1, Username = "batman", Password = "batman", Role = "manager" }, cancellationToken);
-        if (context.Usuarios.FirstOrDefault(x => x.Id == 2) == null)
-            await context.Usuarios.AddAsync(new() { Id = 2, Username = "robin", Password = "robin", Role = "employee" }, cancellationToken);
-        if ((context.Usuarios.FirstOrDefault(x => x.Id == 2) == null) || (context.Usuarios.FirstOrDefault(x => x.Id == 1) == null))
-            await context.SaveChangesAsync(cancellationToken);
+        return await context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password, cancellationToken);
     }
 }
 

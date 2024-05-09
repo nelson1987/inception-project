@@ -4,29 +4,30 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Inception.Api.Features.Account;
+public record LoginAccountCommand
+{
+    public string Username { get; set; }
+    public string Password { get; set; }
+}
+
+public record LoginAccountResponse(int Id, string Username, string Role, string Token);
+public record AuthenticationQueryResponse(string Username, string[] Roles);
 
 [ApiController]
 [Route("api/[controller]")]
-public class AccountController : ControllerBase
+public class AccountsController : ControllerBase
 {
     [HttpPost]
     [Route("login")]
     [AllowAnonymous]
-    public async Task<ActionResult<dynamic>> Authenticate([FromServices] IUserRepository userRepository, [FromBody] User model, CancellationToken cancellationToken = default)
+    public async Task<ActionResult<LoginAccountResponse>> Authenticate([FromServices] IUserRepository userRepository, [FromBody] LoginAccountCommand model, CancellationToken cancellationToken = default)
     {
-        await userRepository.SeedAsync(cancellationToken);
-        var user = userRepository.Get(model.Username, model.Password);
+        var user = await userRepository.Get(model.Username, model.Password, cancellationToken);
 
         if (user == null)
             return NotFound(new { message = "Usuário ou senha inválidos" });
 
-        var token = TokenService.GenerateToken(user);
-        user.Password = "";
-        return new
-        {
-            user,
-            token
-        };
+        return new LoginAccountResponse(user.Id, user.Username, user.Role, TokenService.GenerateToken(user));
     }
 
     [HttpGet]
@@ -40,14 +41,14 @@ public class AccountController : ControllerBase
     [HttpGet]
     [Route("authenticated")]
     [Authorize]
-    public string Authenticated()
+    public AuthenticationQueryResponse Authenticated()
     {
         var identity = (ClaimsIdentity?)User.Identity!;
         var roles = identity.Claims
             .Where(c => c.Type == ClaimTypes.Role)
             .Select(c => c.Value);
 
-        return $"Autenticado: {identity.Name}\nRole: {string.Join(",", roles.ToList())}";
+        return new AuthenticationQueryResponse(identity.Name!, roles.ToArray());
     }
 
     [HttpGet]

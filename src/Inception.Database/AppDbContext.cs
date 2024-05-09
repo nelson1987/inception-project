@@ -1,10 +1,10 @@
 ﻿using Inception.Core;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+//using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore.Metadata.Builders;
+//using Microsoft.Extensions.DependencyInjection;
+//using Microsoft.Extensions.Logging;
 
 namespace Inception.Database;
 public class Customer
@@ -36,7 +36,6 @@ public class Customer
 //    public string Name { get; set; }
 //}
 
-/*
 public partial class AppDbContext : DbContext
 {
     public AppDbContext()
@@ -92,8 +91,8 @@ public partial class AppDbContext : DbContext
     }
 
     //private partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-}*/
-
+}
+/*
 public class CustomersDbContext : DbContext
 {
     public DbSet<Customer> Customers { get; set; }
@@ -148,7 +147,7 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Customer>
         builder.ToTable("Customers");
 
         builder.HasKey(u => u.Id);
-        /*
+       
          *             //entity.Property(e => e.FirstName)
             //    .IsRequired()
             //    .HasMaxLength(100);
@@ -160,7 +159,7 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Customer>
             //    .HasColumnType("decimal(18, 2)");
             //entity.HasOne(e => e.State);
             //entity.HasMany(e => e.Orders);
-         */
+         
     }
 }
 public class CustomersDbSeeder
@@ -435,4 +434,4 @@ public class CustomersDbSeeder
 
     //    return states;
     //}
-}
+}*/

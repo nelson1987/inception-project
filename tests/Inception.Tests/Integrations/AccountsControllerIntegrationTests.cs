@@ -146,5 +146,4 @@ public class AccountsControllerIntegrationTests
         Assert.NotNull(response.Roles);
         Assert.Equal("Test role", response.Roles[0]);
     }
-
 }

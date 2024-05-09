@@ -1,4 +1,7 @@
-﻿namespace Inception.Core.Features.ContaBancarias.Abertura;
+﻿using Inception.Database;
+using Inception.Domain;
+
+namespace Inception.Core.Features.ContaBancarias.Abertura;
 
 public interface IAberturaContaHandler
 {

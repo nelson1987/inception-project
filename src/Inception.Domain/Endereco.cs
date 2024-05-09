@@ -1,4 +1,4 @@
-﻿namespace Inception.Database;
+﻿namespace Inception.Domain;
 
 public record Endereco
 {

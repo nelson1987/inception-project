@@ -1,4 +1,6 @@
-﻿namespace Inception.Core.Features.ContaBancarias.Abertura;
+﻿using FluentValidation;
+
+namespace Inception.Core.Features.ContaBancarias.Abertura;
 
 public class AberturaContaCommandValidator : AbstractValidator<AberturaContaCommand>
 {

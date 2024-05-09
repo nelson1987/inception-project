@@ -14,13 +14,6 @@ public static class Dependencies
         var dbContextOptions =
             new DbContextOptionsBuilder<InceptionDbContext>().UseMongoDB(mongoClient, "sales");
 
-        //var db = new InceptionDbContext(dbContextOptions.Options);
-
-        //services.AddDbContext<InceptionDbContext>(options =>
-        //{
-        //    options.UseMongoDB(configuration.GetConnectionString("DefaultConnection"), "sales");
-        //});
-
         services.AddSingleton<IInceptionDbContext>(new InceptionDbContext(dbContextOptions.Options));
 
         return services;

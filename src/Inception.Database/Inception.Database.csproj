@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Inception.Core\Inception.Core.csproj" />
+	  <ProjectReference Include="..\Inception.Domain\Inception.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

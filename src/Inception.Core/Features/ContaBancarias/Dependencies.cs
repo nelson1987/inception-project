@@ -1,4 +1,6 @@
-﻿using Inception.Core.Features.ContaBancarias.Abertura;
+﻿using FluentValidation;
+using Inception.Core.Features.ContaBancarias.Abertura;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Inception.Core.Features.ContaBancarias;
 

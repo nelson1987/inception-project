@@ -1,5 +1,4 @@
-﻿namespace Inception.Core;
-
+﻿namespace Inception.Domain;
 public class User
 {
     public int Id { get; set; }

@@ -1,26 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 
 namespace Inception.Database;
 
-/*
-
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Data Source=Macoratti;Initial Catalog=InventarioDB;Integrated Security=True"
-  }
-}
- */
-
 public static class Dependencies
 {
-    public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigureContexts(this IServiceCollection services, IConfiguration configuration)
     {
-        //services.AddDbContext<AppDbContext>(options =>
-        //{
-        //    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-        //});
+        var mongoClient = new MongoClient(configuration.GetConnectionString("DefaultConnection"));
+
+        var dbContextOptions =
+            new DbContextOptionsBuilder<InceptionDbContext>().UseMongoDB(mongoClient, "sales");
+
+        services.AddSingleton<IInceptionDbContext>(new InceptionDbContext(dbContextOptions.Options));
+
         return services;
     }
 }

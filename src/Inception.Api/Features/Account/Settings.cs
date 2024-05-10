@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Inception.Core;
+using Inception.Database;
+using Inception.Domain;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -6,29 +10,23 @@ using System.Text;
 
 namespace Inception.Api.Features.Account;
 
-public class User
-{
-    public int Id { get; set; }
-    public required string Username { get; set; }
-    public required string Password { get; set; }
-    public required string Role { get; set; }
-}
-
 public interface IUserRepository
 {
-    User? Get(string username, string password);
+    Task<User?> Get(string username, string password, CancellationToken cancellationToken = default);
 }
 
 public class UserRepository : IUserRepository
 {
-    public User? Get(string username, string password)
+    private readonly IInceptionDbContext _context;
+
+    public UserRepository(IInceptionDbContext context)
     {
-        var users = new List<User>
-        {
-            new() { Id = 1, Username = "batman", Password = "batman", Role = "manager" },
-            new() { Id = 2, Username = "robin", Password = "robin", Role = "employee" }
-        };
-        return users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.Password == password);
+        _context = context;
+    }
+
+    public async Task<User?> Get(string username, string password, CancellationToken cancellationToken = default)
+    {
+        return await _context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password, cancellationToken);
     }
 }
 

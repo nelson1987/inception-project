@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Tests", "tests\In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Database", "src\Inception.Database\Inception.Database.csproj", "{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Domain", "src\Inception.Domain\Inception.Domain.csproj", "{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1C5C7BE-8CDA-4976-BE98-4FD06643A274}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

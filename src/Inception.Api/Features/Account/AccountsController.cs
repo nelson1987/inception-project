@@ -16,8 +16,12 @@ namespace Inception.Api.Features.Account;
 [Produces("application/json")]
 [Consumes("application/json")]
 [SwaggerTag("Login Accounts")]
-public class AccountsController : ControllerBase
+public class AccountsController : DefaultController
 {
+    public AccountsController(ILogger<AccountsController> logger) : base(logger)
+    {
+    }
+
     [AllowAnonymous]
     [HttpPost("login", Name = "Abertura de conta Bancária [controller]")]
     [SwaggerOperation("Realizar Login", "Non-requires any privileges")]
@@ -27,8 +31,9 @@ public class AccountsController : ControllerBase
     [SwaggerResponseExample(200, typeof(LoginAccountResponse))]
     public async Task<ActionResult<LoginAccountResponse>> Authenticate([FromServices] IUserRepository userRepository, [FromBody] LoginAccountCommand model, CancellationToken cancellationToken = default)
     {
+        _logger.LogInformation("Started Authenticated");
         var user = await userRepository.Get(model.Username, model.Password, cancellationToken);
-
+        _logger.LogInformation("Ended Authenticated");
         return user == null
             ? NotFound(new { message = "Usuário ou senha inválidos" })
             : Ok(new LoginAccountResponse(user.Id, user.Username, user.Role, TokenService.GenerateToken(user)));

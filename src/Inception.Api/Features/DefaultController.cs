@@ -7,7 +7,7 @@ namespace Inception.Api.Features;
 [Consumes("application/json")]
 public class DefaultController : ControllerBase
 {
-    private readonly ILogger _logger;
+    public readonly ILogger _logger;
 
     public DefaultController(ILogger logger)
     {

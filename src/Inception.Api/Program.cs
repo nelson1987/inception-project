@@ -1,23 +1,21 @@
-using Inception.Api.Features.Account;
+using Inception.Core.Features.ContaBancarias;
+using Inception.Database;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.OpenApi.Models;
-using System.Threading.RateLimiting;
-using Inception.Database;
 using Swashbuckle.AspNetCore.Filters;
-using Inception.Api.Features.ContasBancarias;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
-builder.Services.ConfigureContexts(builder.Configuration)
-                .AddContaBancariaEnpoints();
-//                .AddUsuarioInjection(builder.Configuration)
-//                .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
-builder.Services.AddUserAuthentication();
+builder.Services.AddInfrastructure(builder.Configuration)
+                .AddContaBancaria();
+//.AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
+Inception.Api.Features.Account.Dependencies.AddAuthentication(builder.Services);
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(LoginAccountResponseExample));
+//builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
@@ -104,4 +102,3 @@ app.UseExceptionHandler(appError =>
 });
 app.UseRateLimiter();
 app.Run();
-public partial class Program { }

@@ -1,34 +1,11 @@
-﻿using Inception.Core;
-using Inception.Database;
-using Inception.Domain;
+﻿using Inception.Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace Inception.Api.Features.Account;
-
-public interface IUserRepository
-{
-    Task<User?> Get(string username, string password, CancellationToken cancellationToken = default);
-}
-
-public class UserRepository : IUserRepository
-{
-    private readonly IInceptionDbContext _context;
-
-    public UserRepository(IInceptionDbContext context)
-    {
-        _context = context;
-    }
-
-    public async Task<User?> Get(string username, string password, CancellationToken cancellationToken = default)
-    {
-        return await _context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == password, cancellationToken);
-    }
-}
 
 public static class Settings
 {
@@ -59,9 +36,8 @@ public static class TokenService
 
 public static class Dependencies
 {
-    public static IServiceCollection AddUserAuthentication(this IServiceCollection services)
+    public static IServiceCollection AddAuthentication(this IServiceCollection services)
     {
-        services.AddScoped<IUserRepository, UserRepository>();
         var key = Encoding.ASCII.GetBytes(Settings.Secret);
         services.AddAuthentication(x =>
         {

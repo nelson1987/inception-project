@@ -1,5 +1,6 @@
 ﻿using Inception.Api.Features.Account.Authentication;
 using Inception.Api.Features.Account.Login;
+using Inception.Domain.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
@@ -20,7 +21,7 @@ public class AccountsController : ControllerBase
     [AllowAnonymous]
     [HttpPost("login", Name = "Abertura de conta Bancária [controller]")]
     [SwaggerOperation("Realizar Login", "Non-requires any privileges")]
-    [SwaggerRequestExample(typeof(LoginAccountCommand), typeof(LoginAccountCommandExample))] 
+    [SwaggerRequestExample(typeof(LoginAccountCommand), typeof(LoginAccountCommandExample))]
     [ProducesResponseType(typeof(LoginAccountCommand), 200)]
     [SwaggerResponse(200, "O usuário foi logado com sucesso.")]
     [SwaggerResponseExample(200, typeof(LoginAccountResponse))]
@@ -28,10 +29,9 @@ public class AccountsController : ControllerBase
     {
         var user = await userRepository.Get(model.Username, model.Password, cancellationToken);
 
-        if (user == null)
-            return NotFound(new { message = "Usuário ou senha inválidos" });
-
-        return Ok(new LoginAccountResponse(user.Id, user.Username, user.Role, TokenService.GenerateToken(user)));
+        return user == null
+            ? NotFound(new { message = "Usuário ou senha inválidos" })
+            : Ok(new LoginAccountResponse(user.Id, user.Username, user.Role, TokenService.GenerateToken(user)));
     }
 
     [HttpGet]

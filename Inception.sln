@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Database", "src\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Domain", "src\Inception.Domain\Inception.Domain.csproj", "{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2E72F014-69FB-45B0-8A0B-E440DDD61AF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Infrastructure", "src\Inception.Infrastructure\Inception.Infrastructure.csproj", "{2955EF90-BBB7-4BE5-803D-4451355D65CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +43,16 @@ Global
 		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2955EF90-BBB7-4BE5-803D-4451355D65CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2955EF90-BBB7-4BE5-803D-4451355D65CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2955EF90-BBB7-4BE5-803D-4451355D65CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2955EF90-BBB7-4BE5-803D-4451355D65CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2955EF90-BBB7-4BE5-803D-4451355D65CA} = {2E72F014-69FB-45B0-8A0B-E440DDD61AF7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8085A32D-C1E2-47EC-870C-65D3909DAD09}

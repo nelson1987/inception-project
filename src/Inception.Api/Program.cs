@@ -7,50 +7,27 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.RateLimiting;
 using Swashbuckle.AspNetCore.Filters;
 using System.Threading.RateLimiting;
+using Inception.Api.Configurations;
+using Inception.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddContaBancaria();
-// https://github.com/domaindrivendev/Swashbuckle.AspNetCore
-
+builder.Services.AddLogging();
+builder.Services.AddInfrastructure(builder.Configuration);
+//.AddApplication()
+//.AddContaBancaria()
+//.AddAuthentication();
+builder.Services.AddCors();
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastRequestExample));
-builder.Services.AddSwaggerGen(c =>
-{
-    c.ExampleFilters();
-    c.EnableAnnotations();
-});
-//builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
-
-builder.Services.AddRateLimiter(rateLimiterOptions =>
-{
-    rateLimiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
-
-    rateLimiterOptions.AddTokenBucketLimiter("token", options =>
-    {
-        options.TokenLimit = 1000;
-        options.ReplenishmentPeriod = TimeSpan.FromHours(1);
-        options.TokensPerPeriod = 700;
-        options.AutoReplenishment = true;
-    });
-
-    rateLimiterOptions.AddPolicy("fixed-by-ip", httpContext =>
-        RateLimitPartition.GetFixedWindowLimiter(
-            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString(),
-            //partitionKey: httpContext.User.Identity?.Name?.ToString(),
-            //httpContext.Request.Headers["X-Forwarded-For"].ToString(),
-            factory: _ => new FixedWindowRateLimiterOptions
-            {
-                PermitLimit = 10,
-                Window = TimeSpan.FromMinutes(1)
-            }));
-});
-
+builder.Services.AddSwaggerGeneration()
+                .AddRateLimit();
+//builder.Services.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+//              .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+//              .MinimumLevel.Override("System", LogEventLevel.Warning)
+//              .ReadFrom.Configuration(hostingContext.Configuration)
+//              .Enrich.FromLogContext());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -61,32 +38,28 @@ app.UseSwaggerUI();
 // }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
-
 app.UseExceptionHandler(appError =>
 {
     appError.Run(async context =>
     {
         context.Response.StatusCode = 500;
         context.Response.ContentType = "application/json";
-
         var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
         if (contextFeature is not null)
         {
             await context.Response.WriteAsJsonAsync(new
             {
-                StatusCode = context.Response.StatusCode,
+                context.Response.StatusCode,
                 Message = "Internal Server Error",
                 Error = contextFeature.Error.Message
             });
         }
     });
 });
-
 app.UseRateLimiter();
-
 app.Run();
+
+public partial class Program() { }

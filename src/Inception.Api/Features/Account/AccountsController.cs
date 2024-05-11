@@ -16,12 +16,8 @@ namespace Inception.Api.Features.Account;
 [Produces("application/json")]
 [Consumes("application/json")]
 [SwaggerTag("Login Accounts")]
-public class AccountsController : DefaultController
+public class AccountsController(ILogger<AccountsController> logger) : DefaultController(logger)
 {
-    public AccountsController(ILogger<AccountsController> logger) : base(logger)
-    {
-    }
-
     [AllowAnonymous]
     [HttpPost("login", Name = "Abertura de conta Bancária [controller]")]
     [SwaggerOperation("Realizar Login", "Non-requires any privileges")]

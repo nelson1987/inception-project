@@ -1,6 +1,5 @@
-﻿using FluentValidation;
-using Inception.Api.Features.ContasBancarias.Abertura;
-using Inception.Core.Features.ContaBancarias.Abertura;
+﻿using Inception.Api.Features.ContasBancarias.Abertura;
+using Inception.Application.Features.ContaBancarias.Abertura;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Inception.Api.Features.ContasBancarias;

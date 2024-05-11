@@ -1,14 +1,13 @@
 using Inception.Api.Configurations;
-using Inception.Core.Features.ContaBancarias;
 using Inception.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLogging();
-builder.Services.AddInfrastructure(builder.Configuration)
-                //.AddApplication()
-                .AddContaBancaria()
-                .AddAuthentication();
+builder.Services.AddInfrastructure(builder.Configuration);
+//.AddApplication()
+//.AddContaBancaria()
+//.AddAuthentication();
 builder.Services.AddCors();
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);

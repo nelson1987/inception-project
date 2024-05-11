@@ -16,6 +16,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Inception.Domain\Inception.Domain.csproj" />
-		<ProjectReference Include="..\Inception.Database\Inception.Database.csproj" />
+		<ProjectReference Include="..\Inception.Infrastructure\Inception.Infrastructure.csproj" />
 	</ItemGroup>
 </Project>

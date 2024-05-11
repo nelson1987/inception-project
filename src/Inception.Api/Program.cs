@@ -1,6 +1,5 @@
 using Inception.Api.Configurations;
 using Inception.Core.Features.ContaBancarias;
-using Inception.Database;
 using Inception.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Diagnostics;
 
@@ -8,7 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLogging();
 builder.Services.AddInfrastructure(builder.Configuration)
                 //.AddApplication()
-                .AddDatabase(builder.Configuration)
                 .AddContaBancaria()
                 .AddAuthentication();
 builder.Services.AddCors();

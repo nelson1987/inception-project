@@ -1,4 +1,4 @@
-﻿namespace Inception.Core.Features.ContaBancarias;
+﻿namespace Inception.Domain;
 
 public class ContaBancaria
 {

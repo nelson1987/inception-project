@@ -1,7 +1,7 @@
 ﻿using Inception.Domain.Entities;
 using Inception.Infrastructure.Persistence;
 
-namespace Inception.Core.Features.ContaBancarias.Abertura;
+namespace Inception.Application.Features.ContaBancarias.Abertura;
 
 public interface IAberturaContaHandler
 {

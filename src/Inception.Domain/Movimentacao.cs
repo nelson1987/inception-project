@@ -1,6 +1,4 @@
-﻿using Inception.Core.Features.ContaBancarias;
-
-namespace Inception.Core;
+﻿namespace Inception.Domain;
 
 public class Movimentacao
 {

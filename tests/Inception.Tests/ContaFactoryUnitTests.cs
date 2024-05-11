@@ -1,5 +1,3 @@
-
-
 namespace Inception.Tests
 {
     public class ContaFactoryUnitTests
@@ -54,13 +52,13 @@ namespace Inception.Tests
             //Gerar NumeroConta
             var fabricante = ContaFactory.Generate(documento);
             return fabricante;
-            //Validar se j· h· conta para esse documento
+            //Validar se j√° h√° conta para esse documento
             //Salvar Conta em Repositorio
         }
     }
     public static class ContaFactory
     {
-        static internal Conta Generate(string documentoValido)
+        internal static Conta Generate(string documentoValido)
         {
             return new Conta
             {
@@ -71,7 +69,7 @@ namespace Inception.Tests
             };
         }
     }
-    public class Conta
+  public class Conta
     {
         public string Documento { get; set; }
         public string Numero { get; set; }

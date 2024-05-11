@@ -18,18 +18,18 @@ public class ApiFixture : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.UseEnvironment("Testing")
+        _ = builder.UseEnvironment("Testing")
             .ConfigureTestServices(services =>
             {
                 services.AddMockedApiAuthentication();
-                services.AddAuthorization(options =>
+                _ = services.AddAuthorization(options =>
                 {
                     options.AddPolicy("manager", builder =>
                     {
                         builder.AuthenticationSchemes.Add("Testing");
                         builder.RequireAuthenticatedUser();
                     });
-                    options.DefaultPolicy = options.GetPolicy("manager");
+                    options.DefaultPolicy = options.GetPolicy("manager")!;
                 });
             });
     }
@@ -39,17 +39,13 @@ public static class ServiceCollectionTestExtensions
     public static IServiceCollection AddMockedApiAuthentication(this IServiceCollection services)
     {
         services.AddAuthentication(defaultScheme: "Testing")
-                .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Testing", options => { });
+                .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Testing", _ => { });
 
         return services;
     }
-    private class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+    private class TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
+        ILoggerFactory logger, UrlEncoder encoder) : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
     {
-        public TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
-            ILoggerFactory logger, UrlEncoder encoder)
-            : base(options, logger, encoder)
-        { }
-
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             var claims = new[] {
@@ -98,7 +94,7 @@ public class AccountsControllerIntegrationTests
         // Assert
         result.EnsureSuccessStatusCode();
         Assert.Equal(200, (int)result.StatusCode);
-        Assert.Equal(command.Username, response.Username);
+        Assert.Equal(command.Username, response!.Username);
         Assert.Equal("manager", response.Role);
         Assert.NotNull(response.Token);
     }
@@ -139,7 +135,7 @@ public class AccountsControllerIntegrationTests
         // Assert
         result.EnsureSuccessStatusCode();
         Assert.Equal(200, (int)result.StatusCode);
-        Assert.Equal("Test user", response.Username);
+        Assert.Equal("Test user", response!.Username);
         Assert.NotNull(response.Roles);
         Assert.Equal("Test role", response.Roles[0]);
     }

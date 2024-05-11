@@ -6,7 +6,6 @@ namespace Inception.Database;
 public interface IInceptionDbContext
 {
     DbSet<User> Usuarios { get; init; }
-
 }
 public partial class InceptionDbContext : DbContext, IInceptionDbContext
 {

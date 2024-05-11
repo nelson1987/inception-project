@@ -8,18 +8,11 @@ public interface IAberturaContaHandler
     Task Handle(AberturaContaCommand command, CancellationToken cancellationToken = default);
 }
 
-public class AberturaContaHandler : IAberturaContaHandler
+public class AberturaContaHandler(IInceptionDbContext context) : IAberturaContaHandler
 {
-    private readonly IInceptionDbContext _context;
-
-    public AberturaContaHandler(IInceptionDbContext context)
-    {
-        _context = context;
-    }
-
     public async Task Handle(AberturaContaCommand command, CancellationToken cancellationToken = default)
     {
-        await _context.Usuarios.AddAsync(new User() { Id = command.Id, Username = "superman", Password = "superman", Role = "Manager" });
+        await context.Usuarios.AddAsync(new User() { Id = command.Id, Username = "superman", Password = "superman", Role = "Manager" }, cancellationToken);
         //_context.Save
     }
 }

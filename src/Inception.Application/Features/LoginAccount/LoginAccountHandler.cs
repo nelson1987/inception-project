@@ -11,18 +11,11 @@ public interface ILoginAccountHandler
 {
     Task<Result<LoginAccountResponse>> Login(LoginAccountCommand command, CancellationToken cancellationToken = default);
 }
-public class LoginAccountHandler : ILoginAccountHandler
+public class LoginAccountHandler(IUserRepository userRepository) : ILoginAccountHandler
 {
-    private readonly IUserRepository _userRepository;
-
-    public LoginAccountHandler(IUserRepository userRepository)
-    {
-        _userRepository = userRepository;
-    }
-
     public async Task<Result<LoginAccountResponse>> Login(LoginAccountCommand command, CancellationToken cancellationToken = default)
     {
-        var user = await _userRepository.Get(command.Username, command.Password, cancellationToken);
+        var user = await userRepository.Get(command.Username, command.Password, cancellationToken);
         return user == null
             ? Result.Fail("Usuário ou senha inválidos")
             : Result.Ok(new LoginAccountResponse(user.Id, user.Username, user.Role, TokenService.GenerateToken(user)));

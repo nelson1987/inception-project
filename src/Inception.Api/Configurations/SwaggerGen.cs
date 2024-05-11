@@ -32,7 +32,7 @@ public static class SwaggerGen
                             Id = "Bearer"
                     }
                     },
-                    new string[] {}
+                    Array.Empty<string>()
                 }
             });
         });

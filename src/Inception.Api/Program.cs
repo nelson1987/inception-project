@@ -9,6 +9,10 @@ using Inception.Api.Features.ContasBancarias;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
+builder.Services.AddHealthChecks()
+    .AddCheck<SqlHealthCheck>("custom-sql", HealthStatus.Unhealthy);
+//.AddNpgSql()
+//.AddRabbitMq();
 builder.Services.ConfigureContexts(builder.Configuration)
                 .AddContaBancariaEnpoints();
 //                .AddUsuarioInjection(builder.Configuration)
@@ -83,6 +87,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHealthChecks("/health");
 app.UseExceptionHandler(appError =>
 {
     appError.Run(async context =>

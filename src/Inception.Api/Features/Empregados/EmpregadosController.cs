@@ -1,8 +1,6 @@
 using FluentValidation;
 using Inception.Api.Contracts;
 using Inception.Api.Extensions;
-using Inception.Api.Features.Empregados.Create;
-using Inception.Api.Features.Empregados.Delete;
 using Inception.Api.Features.Empregados.GetById;
 using Inception.Api.Features.Empregados.Update;
 using Inception.Database;
@@ -39,8 +37,8 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(200, "The product was created")]
     [SwaggerResponse(400, "The product was created")]
     [SwaggerResponse(500, "The product was created")]
-    public async Task<ActionResult> GetAll(//[FromServices] IEmpregadoGetAllIdHandler handler,
-    CancellationToken cancellationToken = default)
+    public ActionResult GetAll(//[FromServices] IEmpregadoGetAllIdHandler handler,
+    /*CancellationToken cancellationToken = default*/)
     {
         string input = "codemaze is awesome";
         var reverse = new StringBuilder(input.Length);
@@ -64,9 +62,9 @@ public class EmpregadosController : ControllerBase
     [SwaggerResponse(400, "The product was created", typeof(IDictionary<string, string>))]
     [SwaggerResponse(404, "The product was created")]
     [SwaggerResponse(500, "The product was created")]
-    public async Task<ActionResult> GetById([FromRoute] int id,
+    public ActionResult GetById(/*[FromRoute] int id,
     [FromServices] IEmpregadoGetByIdHandler handler,
-    CancellationToken cancellationToken = default)
+    CancellationToken cancellationToken = default*/)
     {
         //return Unauthorized();
         //return NotFound();
@@ -105,10 +103,10 @@ public class EmpregadosController : ControllerBase
     [SwaggerOperation("Update a Empregado", "Requires admin privileges")]
     [ProducesResponseType(typeof(PutEmpregadoResponse), 201)]
     [SwaggerResponse(201, "The product was created", typeof(PutEmpregadoResponse))]
-    public async Task<ActionResult> Update([FromRoute] int id,
+    public ActionResult Update(/*[FromRoute] int id,
     [FromBody, BindRequired] PutEmpregadoRequest empregado,
     [FromServices] IEmpregadoUpdateHandler handler,
-    CancellationToken cancellationToken = default)
+    CancellationToken cancellationToken = default*/)
     {
         //return Unauthorized();
         //return NotFound();

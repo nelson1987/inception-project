@@ -1,11 +1,6 @@
-﻿using Inception.Database;
+﻿using Inception.Domain;
 
 namespace Inception.Api.Features;
-
-public interface IAppDbContext
-{
-    IProduto Produtos { get; }
-}
 
 public interface IProduto
 {

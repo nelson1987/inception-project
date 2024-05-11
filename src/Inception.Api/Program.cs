@@ -1,3 +1,14 @@
+using FluentValidation;
+using Inception.Api.Contracts;
+using Inception.Api.Features.Account;
+using Inception.Api.Features.ContasBancarias;
+using Inception.Api.Features.Empregados;
+using Inception.Api.Features.Empregados.Create;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
+using System.Threading.RateLimiting;
 using Inception.Api.Configurations;
 using Inception.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Diagnostics;
@@ -12,6 +23,12 @@ builder.Services.AddCors();
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost:6379";
+});
+
 builder.Services.AddSwaggerGeneration()
                 .AddRateLimit();
 //builder.Services.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration

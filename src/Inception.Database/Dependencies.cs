@@ -7,7 +7,7 @@ namespace Inception.Database;
 
 public static class Dependencies
 {
-    public static IServiceCollection ConfigureContexts(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         var mongoClient = new MongoClient(configuration.GetConnectionString("DefaultConnection"));
 

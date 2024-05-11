@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace Inception.Database;
+namespace Inception.Infrastructure.Persistence;
 
 public static class Dependencies
 {

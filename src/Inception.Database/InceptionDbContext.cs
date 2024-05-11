@@ -1,4 +1,4 @@
-﻿using Inception.Domain;
+﻿using Inception.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 

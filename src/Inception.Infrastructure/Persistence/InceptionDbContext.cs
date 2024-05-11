@@ -1,8 +1,8 @@
-﻿using Inception.Domain;
+﻿using Inception.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 
-namespace Inception.Database;
+namespace Inception.Infrastructure.Persistence;
 public interface IInceptionDbContext
 {
     DbSet<User> Usuarios { get; init; }

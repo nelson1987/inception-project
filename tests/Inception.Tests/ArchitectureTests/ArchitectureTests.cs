@@ -1,22 +1,18 @@
-﻿using AutoFixture;
-using AutoFixture.AutoMoq;
-using FluentAssertions;
-using Inception.Api.Features.Account.Login;
+﻿using FluentAssertions;
 using Inception.Api.Features.ContasBancarias;
-using Inception.Database;
-using Inception.Domain;
+using Inception.Domain.Entities;
 using NetArchTest.Rules;
 using System.Reflection;
 
-namespace Inception.Tests.Integrations;
+namespace Inception.Tests.ArchitectureTests;
 
 public class ArchitectureTests
 {
     private readonly Assembly DomainAssembly = typeof(User).Assembly;
     private readonly Assembly ApiAssembly = typeof(ContasBancariasController).Assembly;
-    private readonly Assembly InfrastructureAssembly = typeof(InceptionDbContext).Assembly;
+    private readonly Assembly InfrastructureAssembly = typeof(Inception.Infrastructure.Persistence.InceptionDbContext).Assembly;
     [Fact]
-    public async Task DomainLayer_Should_NotHaveDependencyOn_ApplicationLayer()
+    public void DomainLayer_Should_NotHaveDependencyOn_ApplicationLayer()
     {
         var result = Types.InAssembly(DomainAssembly)
             .Should()
@@ -26,7 +22,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public async Task DomainLayer_Should_Sealed_ApplicationLayer()
+    public void DomainLayer_Should_Sealed_ApplicationLayer()
     {
         var result = Types.InAssembly(DomainAssembly)
             .That()
@@ -39,7 +35,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public async Task DomainLayer_Should_NotHaveDependencyOn_InfrastructureLayer()
+    public void DomainLayer_Should_NotHaveDependencyOn_InfrastructureLayer()
     {
         var result = Types.InAssembly(DomainAssembly)
             .Should()

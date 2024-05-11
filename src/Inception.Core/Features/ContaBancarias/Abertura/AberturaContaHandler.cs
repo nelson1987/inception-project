@@ -1,5 +1,5 @@
 ﻿using Inception.Database;
-using Inception.Domain;
+using Inception.Domain.Entities;
 
 namespace Inception.Core.Features.ContaBancarias.Abertura;
 

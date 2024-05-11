@@ -1,5 +1,4 @@
-﻿using Inception.Database;
-using Inception.Domain;
+﻿using Inception.Domain.Entities;
 using Inception.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 

@@ -17,7 +17,11 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGeneration()
                 .AddRateLimit();
-
+//builder.Services.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+//              .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+//              .MinimumLevel.Override("System", LogEventLevel.Warning)
+//              .ReadFrom.Configuration(hostingContext.Configuration)
+//              .Enrich.FromLogContext());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

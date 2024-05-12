@@ -1,26 +1,19 @@
-using FluentValidation;
-using Inception.Api.Contracts;
-using Inception.Api.Features.Account;
-using Inception.Api.Features.ContasBancarias;
-using Inception.Api.Features.Empregados;
-using Inception.Api.Features.Empregados.Create;
-using Microsoft.OpenApi.Models;
 using Inception.Api.Configurations;
+using Inception.Api.Features.Account;
 using Inception.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
-builder.Services.AddContaBancaria()
-                .AddScoped<IValidator<CreateEmpregadoRequest>, CreateEmpregadoValidator>();
 builder.Services.AddUserAuthentication();
 builder.Services.AddControllers()
                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerExamplesFromAssemblyOf(typeof(WeatherForecastResponseExample));
-builder.Services.AddSwaggerGen(c => { 
+
+builder.Services.AddSwaggerGen(c =>
+{
     c.EnableAnnotations();
-    c.ExampleFilters();
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",
@@ -43,30 +36,6 @@ builder.Services.AddSwaggerGen(c => {
             new string[] {}
         }
     });
-});
-
-builder.Services.AddRateLimiter(rateLimiterOptions =>
-{
-    rateLimiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
-
-    rateLimiterOptions.AddTokenBucketLimiter("token", options =>
-    {
-        options.TokenLimit = 1000;
-        options.ReplenishmentPeriod = TimeSpan.FromHours(1);
-        options.TokensPerPeriod = 700;
-        options.AutoReplenishment = true;
-    });
-
-    rateLimiterOptions.AddPolicy("fixed-by-ip", httpContext =>
-        RateLimitPartition.GetFixedWindowLimiter(
-            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString(),
-            //partitionKey: httpContext.User.Identity?.Name?.ToString(),
-            //httpContext.Request.Headers["X-Forwarded-For"].ToString(),
-            factory: _ => new FixedWindowRateLimiterOptions
-            {
-                PermitLimit = 10,
-                Window = TimeSpan.FromMinutes(1)
-            }));
 });
 
 builder.Services.AddLogging();

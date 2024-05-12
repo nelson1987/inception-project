@@ -1,81 +1,80 @@
 
 
-namespace Inception.Tests
+namespace Inception.Tests;
+
+public class ContaFactoryUnitTests
 {
-    public class ContaFactoryUnitTests
+    [Fact]
+    public void Dado_os_Dados_Necessario_Abrir_Conta()
     {
-        [Fact]
-        public void Dado_os_Dados_Necessario_Abrir_Conta()
-        {
-            //Arrange
-            var documentoValido = "1234567890";
-            //Act
-            Conta contaGerada = ContaFactory.Generate(documentoValido);
-            //Assert
-            Assert.Equal(documentoValido, contaGerada.Documento);
-            Assert.NotNull(contaGerada.Numero);
-            Assert.NotNull(contaGerada.Agencia);
-            Assert.NotNull(contaGerada.CodigoCompe);
-        }
+        //Arrange
+        var documentoValido = "1234567890";
+        //Act
+        Conta contaGerada = ContaFactory.Generate(documentoValido);
+        //Assert
+        Assert.Equal(documentoValido, contaGerada.Documento);
+        Assert.NotNull(contaGerada.Numero);
+        Assert.NotNull(contaGerada.Agencia);
+        Assert.NotNull(contaGerada.CodigoCompe);
     }
-    public class ContaApplicationServiceUnitTests
+}
+public class ContaApplicationServiceUnitTests
+{
+    [Fact]
+    public void Dado_os_Dados_Necessario_Abrir_Conta()
     {
-        [Fact]
-        public void Dado_os_Dados_Necessario_Abrir_Conta()
-        {
-            //Arrange
-            var documentoValido = "1234567890";
-            //Act
-            var servico = new ContaApplicationService();
-            Conta contaGerada = servico.AbrirConta(documentoValido);
-            //Assert
-            Assert.Equal(documentoValido, contaGerada.Documento);
-            Assert.NotNull(contaGerada.Numero);
-            Assert.NotNull(contaGerada.Agencia);
-            Assert.NotNull(contaGerada.CodigoCompe);
-        }
-        [Fact]
-        public void Dado_que_nao_foi_possivel_gerar_numero_conta_retorna_erro()
-        {
-        }
-        [Fact]
-        public void Dado_que_o_numero_conta_ja_existe_retorna_erro()
-        {
-        }
-        [Fact]
-        public void Dado_que_ja_existe_conta_com_esse_documento_retorna_erro()
-        {
-        }
+        //Arrange
+        var documentoValido = "1234567890";
+        //Act
+        var servico = new ContaApplicationService();
+        Conta contaGerada = servico.AbrirConta(documentoValido);
+        //Assert
+        Assert.Equal(documentoValido, contaGerada.Documento);
+        Assert.NotNull(contaGerada.Numero);
+        Assert.NotNull(contaGerada.Agencia);
+        Assert.NotNull(contaGerada.CodigoCompe);
     }
-    public class ContaApplicationService
+    [Fact]
+    public void Dado_que_nao_foi_possivel_gerar_numero_conta_retorna_erro()
     {
-        public Conta AbrirConta(string documento)
-        {
-            //Gerar NumeroConta
-            var fabricante = ContaFactory.Generate(documento);
-            return fabricante;
-            //Validar se já há conta para esse documento
-            //Salvar Conta em Repositorio
-        }
     }
-    public static class ContaFactory
+    [Fact]
+    public void Dado_que_o_numero_conta_ja_existe_retorna_erro()
     {
-        static internal Conta Generate(string documentoValido)
-        {
-            return new Conta
-            {
-                Documento = documentoValido,
-                Numero = "123",
-                Agencia = "Alfandega",
-                CodigoCompe = "391"
-            };
-        }
     }
-    public class Conta
+    [Fact]
+    public void Dado_que_ja_existe_conta_com_esse_documento_retorna_erro()
     {
-        public string Documento { get; set; }
-        public string Numero { get; set; }
-        public string Agencia { get; set; }
-        public string CodigoCompe { get; set; }
     }
+}
+public class ContaApplicationService
+{
+    public Conta AbrirConta(string documento)
+    {
+        //Gerar NumeroConta
+        var fabricante = ContaFactory.Generate(documento);
+        return fabricante;
+        //Validar se já há conta para esse documento
+        //Salvar Conta em Repositorio
+    }
+}
+public static class ContaFactory
+{
+    static internal Conta Generate(string documentoValido)
+    {
+        return new Conta
+        {
+            Documento = documentoValido,
+            Numero = "123",
+            Agencia = "Alfandega",
+            CodigoCompe = "391"
+        };
+    }
+}
+public class Conta
+{
+    public required string Documento { get; set; }
+    public required string Numero { get; set; }
+    public required string Agencia { get; set; }
+    public required string CodigoCompe { get; set; }
 }

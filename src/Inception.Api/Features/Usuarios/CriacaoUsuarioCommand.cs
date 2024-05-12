@@ -50,7 +50,7 @@ public class UsuarioService : IUsuarioService
         return await _context.Customers.OrderBy(c => c.LastName).ToListAsync();
     }
 
-    public async Task<Customer> GetCustomerAsync(int id)
+    public async Task<Customer?> GetCustomerAsync(int id)
     {
         return await _context.Customers.SingleOrDefaultAsync(c => c.Id == id);
     }
@@ -95,7 +95,7 @@ public class UsuarioService : IUsuarioService
     {
         //Extra hop to the database but keeps it nice and simple for this demo
         var customer = await _context.Customers.SingleOrDefaultAsync(c => c.Id == id);
-        _context.Remove(customer);
+        _context.Remove(customer!);
         try
         {
             return (await _context.SaveChangesAsync() > 0 ? true : false);

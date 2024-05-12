@@ -166,7 +166,7 @@ public class CustomersDbSeeder
         using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
         {
             var customersDb = serviceScope.ServiceProvider.GetService<CustomersDbContext>();
-            if (await customersDb.Database.EnsureCreatedAsync())
+            if (await customersDb!.Database.EnsureCreatedAsync())
             {
                 if (!await customersDb.Customers.AnyAsync())
                 {

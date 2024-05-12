@@ -1,12 +1,3 @@
-using FluentValidation;
-using Inception.Api.Contracts;
-using Inception.Api.Features.ContasBancarias;
-using Inception.Api.Features.Empregados;
-using Inception.Api.Features.Empregados.Create;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.RateLimiting;
-using Swashbuckle.AspNetCore.Filters;
-using System.Threading.RateLimiting;
 using Inception.Api.Configurations;
 using Inception.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Diagnostics;

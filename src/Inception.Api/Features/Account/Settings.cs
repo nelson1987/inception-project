@@ -1,4 +1,6 @@
 ﻿using Inception.Domain.Entities;
+using Inception.Domain.Repositories;
+using Inception.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,8 +38,9 @@ public static class TokenService
 
 public static class Dependencies
 {
-    public static IServiceCollection AddAuthentication(this IServiceCollection services)
+    public static IServiceCollection AddUserAuthentication(this IServiceCollection services)
     {
+        services.AddScoped<IUserRepository, UserRepository>();
         var key = Encoding.ASCII.GetBytes(Settings.Secret);
         services.AddAuthentication(x =>
         {

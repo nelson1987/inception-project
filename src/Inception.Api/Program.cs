@@ -1,3 +1,11 @@
+using FluentValidation;
+using Inception.Api.Contracts;
+using Inception.Api.Features.ContasBancarias;
+using Inception.Api.Features.Empregados;
+using Inception.Api.Features.Empregados.Create;
+using Microsoft.AspNetCore.RateLimiting;
+using Swashbuckle.AspNetCore.Filters;
+using System.Threading.RateLimiting;
 using Inception.Api.Configurations;
 using Inception.Api.Features.Account;
 using Inception.Infrastructure.Persistence;
@@ -26,6 +34,30 @@ builder.Services.AddSwaggerGeneration()
 //              .MinimumLevel.Override("System", LogEventLevel.Warning)
 //              .ReadFrom.Configuration(hostingContext.Configuration)
 //              .Enrich.FromLogContext());
+
+builder.Services.AddRateLimiter(rateLimiterOptions =>
+{
+    rateLimiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+    rateLimiterOptions.AddTokenBucketLimiter("token", options =>
+    {
+        options.TokenLimit = 1000;
+        options.ReplenishmentPeriod = TimeSpan.FromHours(1);
+        options.TokensPerPeriod = 700;
+        options.AutoReplenishment = true;
+    });
+
+    rateLimiterOptions.AddPolicy("fixed-by-ip", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString(),
+            //partitionKey: httpContext.User.Identity?.Name?.ToString(),
+            //httpContext.Request.Headers["X-Forwarded-For"].ToString(),
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 10,
+                Window = TimeSpan.FromMinutes(1)
+            }));
+});
 
 var app = builder.Build();
 

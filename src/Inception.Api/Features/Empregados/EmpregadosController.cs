@@ -128,7 +128,6 @@ public class EmpregadosController : ControllerBase
         return NoContent();
     }
 }
-
 public class WeatherForecastResponseExample : IMultipleExamplesProvider<Empregado>
 {
     public IEnumerable<SwaggerExample<Empregado>> GetExamples()

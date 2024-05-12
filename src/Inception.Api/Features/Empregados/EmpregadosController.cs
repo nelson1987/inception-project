@@ -118,9 +118,9 @@ public class EmpregadosController : ControllerBase
     [SwaggerOperation("Delete a Empregado", "Requires admin privileges")]
     [ProducesResponseType(204)]
     [SwaggerResponse(204, "The empregado was deleted")]
-    public async Task<ActionResult> Delete([FromRoute] int id,
+    public ActionResult Delete(/*[FromRoute] int id,
     //[FromServices] IEmpregadoDeleteHandler handler,
-    CancellationToken cancellationToken = default)
+    CancellationToken cancellationToken = default*/)
     {
         //return Unauthorized();
         //Response response = await handler.Handle(cancellationToken);

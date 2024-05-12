@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Inception.Domain.Entities;
+using Inception.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -11,9 +13,9 @@ public class AccountController : ControllerBase
     [HttpPost]
     [Route("login")]
     [AllowAnonymous]
-    public ActionResult<dynamic> Authenticate([FromServices] IUserRepository userRepository, [FromBody] User model)
+    public async Task<ActionResult<dynamic>> Authenticate([FromServices] IUserRepository userRepository, [FromBody] User model)
     {
-        var user = userRepository.Get(model.Username, model.Password);
+        var user = await userRepository.Get(model.Username, model.Password);
 
         if (user == null)
             return NotFound(new { message = "Usuário ou senha inválidos" });

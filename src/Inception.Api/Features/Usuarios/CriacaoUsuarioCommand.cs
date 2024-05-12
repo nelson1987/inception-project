@@ -128,7 +128,7 @@ public class Usuario
 }
 
 [Route("api/[controller]")]
-public class UsuariosController : DefaulController
+public class UsuariosController : DefaultController
 {
     public UsuariosController(ILogger<UsuariosController> logger)
         : base(logger)

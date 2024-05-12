@@ -1,4 +1,5 @@
-﻿namespace Inception.Core;
+﻿namespace Inception.Domain;
+
 public class Movimentacao
 {
     public int Id { get; set; }

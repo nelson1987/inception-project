@@ -1,19 +1,15 @@
-version: '3'
-volumes:
-    postgres_volume:
-      driver: local
+version: "3.9"
+
 services:
-    postgres:
-        image: postgres
-        healthcheck:
-          test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
-        restart: always
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: Customers
-        volumes:
-          - ./scripts/base.sql:/docker-entrypoint-initdb.d/base.sql
-          - postgres_volume:/var/lib/postgresql/data
-        ports:
-          - 5433:5432
+  mongo:
+    container_name: container-mongodb
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: sales
+    volumes:
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro

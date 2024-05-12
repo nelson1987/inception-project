@@ -4,7 +4,7 @@ namespace Inception.Api.Features.Empregados.Create;
 
 public interface IEmpregadoCreateHandler
 {
-    Task Handle(CreateEmpregadoRequest request,CancellationToken cancellationToken = default);
+    Task Handle(CreateEmpregadoRequest request, CancellationToken cancellationToken = default);
 }
 
 public class EmpregadoCreateHandler : IEmpregadoCreateHandler

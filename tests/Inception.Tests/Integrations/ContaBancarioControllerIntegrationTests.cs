@@ -3,6 +3,7 @@ using AutoFixture.AutoMoq;
 using Inception.Api.Features.ContasBancarias;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System.Text;
 using System.Text.Json;
 
@@ -24,11 +25,7 @@ public class ContasBancariasControllerIntegrationTests
     private HttpClient Client => _server.CreateClient();
     const string _url = "api/ContasBancarias";
 
-    //private IWriteRepository<Movement> _creditNotesWriter =>
-    //    _server.Services.GetRequiredService<IWriteRepository<Movement>>();
-    //private IReadRepository<Movement> _creditNotesReader =>
-    //    _server.Services.GetRequiredService<IReadRepository<Movement>>();
-    public ContasBancariasControllerIntegrationTests()
+  public ContasBancariasControllerIntegrationTests()
     {
         _command = _fixture.Build<AberturaContaCommand>()
             .Create();

@@ -16,7 +16,6 @@ namespace Inception.Tests
             Assert.NotNull(contaGerada.CodigoCompe);
         }
     }
-
     public class ContaApplicationServiceUnitTests
     {
         [Fact]
@@ -33,23 +32,19 @@ namespace Inception.Tests
             Assert.NotNull(contaGerada.Agencia);
             Assert.NotNull(contaGerada.CodigoCompe);
         }
-
         [Fact]
         public void Dado_que_nao_foi_possivel_gerar_numero_conta_retorna_erro()
         {
         }
-
         [Fact]
         public void Dado_que_o_numero_conta_ja_existe_retorna_erro()
         {
         }
-
         [Fact]
         public void Dado_que_ja_existe_conta_com_esse_documento_retorna_erro()
         {
         }
     }
-
     public class ContaApplicationService
     {
         public Conta AbrirConta(string documento)
@@ -57,11 +52,10 @@ namespace Inception.Tests
             //Gerar NumeroConta
             var fabricante = ContaFactory.Generate(documento);
             return fabricante;
-            //Validar se j· h· conta para esse documento
+            //Validar se j√° h√° conta para esse documento
             //Salvar Conta em Repositorio
         }
     }
-
     public static class ContaFactory
     {
         internal static Conta Generate(string documentoValido)
@@ -75,8 +69,7 @@ namespace Inception.Tests
             };
         }
     }
-
-    public class Conta
+  public class Conta
     {
         public string Documento { get; set; }
         public string Numero { get; set; }

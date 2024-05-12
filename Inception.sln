@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Application", "src\Inception.Application\Inception.Application.csproj", "{595CAC8E-CD2C-4411-8EAB-3093DA987D15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Core", "src\Inception.Core\Inception.Core.csproj", "{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Tests", "tests\Inception.Tests\Inception.Tests.csproj", "{C0D82BCE-5445-43E7-8C88-D1C157A259AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{249390E2-F70F-443F-9E8C-39AD4B3B091E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{249390E2-F70F-443F-9E8C-39AD4B3B091E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{249390E2-F70F-443F-9E8C-39AD4B3B091E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E514435D-6544-4C8D-AFDB-2E2C301BE711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B2FC0F-DF5A-4219-B9D8-736ECB0CF126}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C0D82BCE-5445-43E7-8C88-D1C157A259AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0D82BCE-5445-43E7-8C88-D1C157A259AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0D82BCE-5445-43E7-8C88-D1C157A259AD}.Release|Any CPU.ActiveCfg = Release|Any CPU

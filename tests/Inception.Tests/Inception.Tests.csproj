@@ -33,6 +33,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Inception.Api\Inception.Api.csproj" />
 		<ProjectReference Include="..\..\src\Inception.Application\Inception.Application.csproj" />
+
 	</ItemGroup>
 
 	<ItemGroup>

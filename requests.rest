@@ -1,0 +1,41 @@
+@baseUrl = https://localhost:7073/api
+
+# @name login
+POST {{baseUrl}}/accounts/login
+accept: */*
+Content-Type: application/json
+
+{
+  "Id": 1,
+  "Username": "batman",
+  "Password": "batman",
+  "Role": "manager"
+}
+###
+
+@authToken = {{login.response.body.$.Token}}
+
+# @name getAuthenticated
+GET {{baseUrl}}/Account/authenticated
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+###
+
+# @name getManager
+GET {{baseUrl}}/Account/manager 
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+###
+
+# @name postContasBancarias
+POST {{baseUrl}}/contasbancarias 
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "Id": 3,
+  "Name": "Nome",
+  "Email": "maiordeidade@email.com",
+  "Age": 18
+}
+###

@@ -1,5 +1,4 @@
-﻿using Inception.Core.Repositories;
-using Inception.Infrastructure.Persistence.Repositories;
+﻿using Inception.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

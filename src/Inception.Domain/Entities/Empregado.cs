@@ -1,4 +1,4 @@
-﻿namespace Inception.Core;
+﻿namespace Inception.Core.Entities;
 
 public class Empregado
 {

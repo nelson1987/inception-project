@@ -1,5 +1,4 @@
 ﻿using Inception.Core.Entities;
-using Inception.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inception.Infrastructure.Persistence.Repositories;

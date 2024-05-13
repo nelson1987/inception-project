@@ -1,4 +1,4 @@
-﻿namespace Inception.Domain.Entities;
+﻿namespace Inception.Core.Entities;
 public class User
 {
     public int Id { get; set; }

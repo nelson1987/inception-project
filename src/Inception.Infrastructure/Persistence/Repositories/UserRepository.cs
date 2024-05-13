@@ -1,5 +1,5 @@
-﻿using Inception.Domain.Entities;
-using Inception.Domain.Repositories;
+﻿using Inception.Core.Entities;
+using Inception.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inception.Infrastructure.Persistence.Repositories;

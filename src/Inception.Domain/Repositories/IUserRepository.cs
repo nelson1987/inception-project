@@ -1,6 +1,6 @@
-﻿using Inception.Domain.Entities;
+﻿using Inception.Core.Entities;
 
-namespace Inception.Domain.Repositories;
+namespace Inception.Core.Repositories;
 public interface IUserRepository
 {
     Task<User?> Get(string username, string password, CancellationToken cancellationToken = default);

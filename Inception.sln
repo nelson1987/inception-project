@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Api", "src\Incept
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Tests", "tests\Inception.Tests\Inception.Tests.csproj", "{C0D82BCE-5445-43E7-8C88-D1C157A259AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Domain", "src\Inception.Domain\Inception.Domain.csproj", "{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Core", "src\Inception.Domain\Inception.Core.csproj", "{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2E72F014-69FB-45B0-8A0B-E440DDD61AF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Infrastructure", "src\Inception.Infrastructure\Inception.Infrastructure.csproj", "{2955EF90-BBB7-4BE5-803D-4451355D65CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Infrastructure", "src\Inception.Infrastructure\Inception.Infrastructure.csproj", "{2955EF90-BBB7-4BE5-803D-4451355D65CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inception.Application", "src\Inception.Application\Inception.Application.csproj", "{595CAC8E-CD2C-4411-8EAB-3093DA987D15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Application", "src\Inception.Application\Inception.Application.csproj", "{595CAC8E-CD2C-4411-8EAB-3093DA987D15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Structure", "Structure\Structure.csproj", "{55837487-ACF9-4266-A516-2DC782C33521}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{595CAC8E-CD2C-4411-8EAB-3093DA987D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{595CAC8E-CD2C-4411-8EAB-3093DA987D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{595CAC8E-CD2C-4411-8EAB-3093DA987D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55837487-ACF9-4266-A516-2DC782C33521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55837487-ACF9-4266-A516-2DC782C33521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55837487-ACF9-4266-A516-2DC782C33521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55837487-ACF9-4266-A516-2DC782C33521}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

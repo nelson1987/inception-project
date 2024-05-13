@@ -1,4 +1,4 @@
-﻿namespace Inception.Domain;
+﻿namespace Inception.Core;
 
 public enum Funcao
 {

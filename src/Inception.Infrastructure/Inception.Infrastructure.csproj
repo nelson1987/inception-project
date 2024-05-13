@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Inception.Domain\Inception.Domain.csproj" />
+    <ProjectReference Include="..\Inception.Domain\Inception.Core.csproj" />
   </ItemGroup>
 
 </Project>

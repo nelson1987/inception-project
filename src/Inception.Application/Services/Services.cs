@@ -1,8 +1,8 @@
-﻿using Structure.Core.Entities;
-using Structure.Core.UseCases;
-using Structure.Infrastructure.Repositories;
+﻿using Inception.Core.Entities;
+using Inception.Core.UseCases;
+using Inception.Infrastructure.Persistence.Repositories;
 
-namespace Structure.Application.Services;
+namespace Inception.Application.Services;
 public class UserRegistrationService : IUserRegistrationUseCase
 {
     private readonly IUserRepository _userRepository;
@@ -15,9 +15,9 @@ public class UserRegistrationService : IUserRegistrationUseCase
     public void RegisterUser(string username, string email)
     {
         // The user registration logic is implemented here
-        var newUser = new User { Username = username, Email = email };
+        var newUser = new User { Username = username, Password = email, Role = string.Empty };
 
-        _userRepository.AddUser(newUser);
+        _userRepository.Get(newUser.Username, newUser.Password);
         Console.WriteLine($"User {username} with the email {email} was successfully registered.");
 
     }

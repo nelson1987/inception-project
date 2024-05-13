@@ -26,4 +26,8 @@
     <ProjectReference Include="..\Inception.Domain\Inception.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BackgroudnJobs\" />
+  </ItemGroup>
+
 </Project>

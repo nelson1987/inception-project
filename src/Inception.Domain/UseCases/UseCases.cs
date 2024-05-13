@@ -1,4 +1,4 @@
-﻿namespace Structure.Core.UseCases;
+﻿namespace Inception.Core.UseCases;
 public interface IUserRegistrationUseCase
 {
     void RegisterUser(string username, string email);

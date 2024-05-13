@@ -1,4 +1,4 @@
-﻿using Inception.Domain;
+﻿using Inception.Core.Entities;
 
 namespace Inception.Api.Features;
 

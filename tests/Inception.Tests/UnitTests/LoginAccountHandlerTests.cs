@@ -1,8 +1,6 @@
 ﻿using AutoFixture;
 using AutoFixture.AutoMoq;
 using Inception.Application.Features.LoginAccount;
-using Inception.Domain.Entities;
-using Inception.Domain.Repositories;
 using Moq;
 
 namespace Inception.Tests.UnitTests;

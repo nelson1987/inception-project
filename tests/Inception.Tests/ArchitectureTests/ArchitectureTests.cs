@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Inception.Api.Features.ContasBancarias;
-using Inception.Domain.Entities;
 using NetArchTest.Rules;
 using System.Reflection;
 

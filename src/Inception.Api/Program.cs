@@ -2,8 +2,11 @@ using Inception.Api.Configurations;
 using Inception.Api.Features.Account;
 using Inception.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddCors();
 builder.Services.AddUserAuthentication();
 builder.Services.AddControllers()
@@ -27,6 +30,15 @@ builder.Services.AddSwaggerGeneration()
 //              .ReadFrom.Configuration(hostingContext.Configuration)
 //              .Enrich.FromLogContext());
 
+builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+{
+    options.Level = CompressionLevel.Optimal;
+});
+
+builder.Services.AddResponseCompression(options =>
+{
+    options.Providers.Add<GzipCompressionProvider>();
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,5 +1,4 @@
-﻿using Inception.Domain.Entities;
-using Inception.Domain.Repositories;
+﻿using Inception.Core.Entities;
 using Inception.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;

@@ -1,0 +1,6 @@
+@InceptionClean.Api_HostAddress = http://localhost:5001
+
+GET {{InceptionClean.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

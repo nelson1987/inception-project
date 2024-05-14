@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 
-namespace Inception.Api.Configurations;
+namespace InceptionClean.Api.Configurations;
 
 public static class RateLimit
 {
@@ -24,7 +24,7 @@ public static class RateLimit
                     partitionKey: httpContext.Connection.RemoteIpAddress?.ToString(),
                     factory: _ => new FixedWindowRateLimiterOptions
                     {
-                        PermitLimit = 10,
+                        PermitLimit = 2,
                         Window = TimeSpan.FromMinutes(1)
                     }));
         });

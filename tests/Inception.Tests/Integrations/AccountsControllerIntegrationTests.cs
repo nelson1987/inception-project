@@ -1,5 +1,8 @@
 ﻿using Inception.Api.Features.Account.Authentication;
 using Inception.Api.Features.Account.Login;
+using InceptionClean.Api.Configurations;
+using InceptionClean.Application.Features.Account.Authentication;
+using InceptionClean.Application.Features.Account.Login;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;

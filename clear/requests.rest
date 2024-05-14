@@ -1,0 +1,8 @@
+POST https://localhost:7246/api/Persons
+accept: */*
+Content-Type: application/json
+
+{
+  "name": "string",
+  "email": "string"
+}

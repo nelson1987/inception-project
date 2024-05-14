@@ -15,6 +15,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inception.Application", "src\Inception.Application\Inception.Application.csproj", "{595CAC8E-CD2C-4411-8EAB-3093DA987D15}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clear", "clear", "{D3556A5D-D286-4FDE-B543-4F5C285A45C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InceptionClean.Domain", "clear\InceptionClean.Domain\InceptionClean.Domain.csproj", "{87F0A95F-28B8-430F-A2E7-CE29CB76550F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InceptionClean.Application", "clear\InceptionClean.Application\InceptionClean.Application.csproj", "{8EA1C01E-DA08-4DD9-951E-5EB51F028925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InceptionClean.Infrastructure", "clear\Inception.Infrastructure\InceptionClean.Infrastructure.csproj", "{24027C41-BBE2-4A5A-A52D-C41610117218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InceptionClean.Api", "clear\InceptionClean.Api\InceptionClean.Api.csproj", "{0C9B7331-695A-4E71-8773-7D763A472C27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +51,22 @@ Global
 		{595CAC8E-CD2C-4411-8EAB-3093DA987D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{595CAC8E-CD2C-4411-8EAB-3093DA987D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{595CAC8E-CD2C-4411-8EAB-3093DA987D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87F0A95F-28B8-430F-A2E7-CE29CB76550F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87F0A95F-28B8-430F-A2E7-CE29CB76550F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87F0A95F-28B8-430F-A2E7-CE29CB76550F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87F0A95F-28B8-430F-A2E7-CE29CB76550F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA1C01E-DA08-4DD9-951E-5EB51F028925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA1C01E-DA08-4DD9-951E-5EB51F028925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA1C01E-DA08-4DD9-951E-5EB51F028925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA1C01E-DA08-4DD9-951E-5EB51F028925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24027C41-BBE2-4A5A-A52D-C41610117218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24027C41-BBE2-4A5A-A52D-C41610117218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24027C41-BBE2-4A5A-A52D-C41610117218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24027C41-BBE2-4A5A-A52D-C41610117218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C9B7331-695A-4E71-8773-7D763A472C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C9B7331-695A-4E71-8773-7D763A472C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C9B7331-695A-4E71-8773-7D763A472C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C9B7331-695A-4E71-8773-7D763A472C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +75,10 @@ Global
 		{D05F3DA9-AEC0-4752-A0C5-4BD7AD505787} = {2E72F014-69FB-45B0-8A0B-E440DDD61AF7}
 		{2955EF90-BBB7-4BE5-803D-4451355D65CA} = {2E72F014-69FB-45B0-8A0B-E440DDD61AF7}
 		{595CAC8E-CD2C-4411-8EAB-3093DA987D15} = {2E72F014-69FB-45B0-8A0B-E440DDD61AF7}
+		{87F0A95F-28B8-430F-A2E7-CE29CB76550F} = {D3556A5D-D286-4FDE-B543-4F5C285A45C7}
+		{8EA1C01E-DA08-4DD9-951E-5EB51F028925} = {D3556A5D-D286-4FDE-B543-4F5C285A45C7}
+		{24027C41-BBE2-4A5A-A52D-C41610117218} = {D3556A5D-D286-4FDE-B543-4F5C285A45C7}
+		{0C9B7331-695A-4E71-8773-7D763A472C27} = {D3556A5D-D286-4FDE-B543-4F5C285A45C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8085A32D-C1E2-47EC-870C-65D3909DAD09}

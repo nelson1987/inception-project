@@ -31,8 +31,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\clear\Inception.Infrastructure\InceptionClean.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\clear\InceptionClean.Application\InceptionClean.Application.csproj" />
+		<ProjectReference Include="..\..\clear\InceptionClean.Domain\InceptionClean.Domain.csproj" />
+		<ProjectReference Include="..\..\clear\InceptionClean.Api\InceptionClean.Api.csproj" />
 		<ProjectReference Include="..\..\src\Inception.Api\Inception.Api.csproj" />
 		<ProjectReference Include="..\..\src\Inception.Application\Inception.Application.csproj" />
+		<ProjectReference Include="..\..\src\Inception.Infrastructure\Inception.Infrastructure.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
